@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/learn-cards/static/css/main.071e0d91.css",
+    "main.js": "/learn-cards/static/js/main.ecf195a5.js",
+    "static/js/787.9a3d9cd9.chunk.js": "/learn-cards/static/js/787.9a3d9cd9.chunk.js",
+    "index.html": "/learn-cards/index.html",
+    "static/media/checked.svg": "/learn-cards/static/media/checked.48b0aed06990e0e5cc8f.svg",
+    "main.071e0d91.css.map": "/learn-cards/static/css/main.071e0d91.css.map",
+    "main.ecf195a5.js.map": "/learn-cards/static/js/main.ecf195a5.js.map",
+    "787.9a3d9cd9.chunk.js.map": "/learn-cards/static/js/787.9a3d9cd9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.071e0d91.css",
+    "static/js/main.ecf195a5.js"
+  ]
+}
