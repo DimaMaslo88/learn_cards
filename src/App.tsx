@@ -1,26 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import s from './App.module.css';
+import Header from "./header/Header";
+import Pages from "./pages/Pages";
+import { useSelector} from "react-redux";
+import {InitializeTC} from "./reducers/auth-reducer";
+import CircularProgress from '@mui/material/CircularProgress'
+import {AppStateType, useAppDispatch} from "./reducers/store";
+import {ErrorSnackbar} from "./pages/ErrorSnackBar/errorSnackBar";
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useAppDispatch()
+    const isInitializeIn = useSelector<AppStateType, boolean>(state => state.auth.isInitializeIn)
+    const status = useSelector<AppStateType, boolean>(state => state.app.status)
+
+    useEffect(() => {
+        dispatch(InitializeTC())
+    }, [])
+    if (!isInitializeIn) {
+        return <div
+            style={{position: 'fixed', top: '30%', textAlign: "center", width: '100%'}}>
+            <CircularProgress/>
+        </div>
+    }
+
+
+    return (
+
+        <div className={s.app}>
+
+
+            <Header/>
+            <Pages/>
+            <ErrorSnackbar/>
+            {status  && <CircularProgress/>}
+
+        </div>
+    );
 }
 
 export default App;
