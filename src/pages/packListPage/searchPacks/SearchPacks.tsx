@@ -5,14 +5,22 @@ import {AppStateType, useAppDispatch} from "../../../reducers/store";
 import {CreateCardsTC, searchByNameAC} from "../../../reducers/cards-reducer";
 import Button from "../../../common/button/Button";
 
+import {setModalWindowAC} from "../../../reducers/modal-reducer";
+import {ModalWindow} from "../../../modal/Modal";
+
 const SearchPacks = () => {
     const dispatch = useAppDispatch()
     const value = useSelector<AppStateType, string>(state => state.cardPacks.params.packName)
     const searchNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(searchByNameAC(e.currentTarget.value))
     }
-    const addPack = () => {
-        dispatch(CreateCardsTC())
+    // const addPack = () => {
+    //     dispatch(CreateCardsTC())
+    //
+    // }
+    const openModelWindowHandler=()=>{
+
+        dispatch(setModalWindowAC(true,'add'))
 
     }
 
@@ -26,9 +34,10 @@ const SearchPacks = () => {
 
 
             />
-            <Button onClick={addPack}>Add Card</Button>
 
+            <Button onClick={openModelWindowHandler}>Add Card</Button>
 
+            < ModalWindow/>
         </div>
 
 
