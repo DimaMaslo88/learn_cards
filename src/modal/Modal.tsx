@@ -6,7 +6,7 @@ import AddModal from "./addModal/AddModal";
 import {AppStateType, useAppDispatch} from "../reducers/store";
 import {useSelector} from "react-redux";
 import {ComponentType, setModalWindowAC} from "../reducers/modal-reducer";
-import {CreateCardsTC} from "../reducers/cards-reducer";
+import {addCardsAC, CreateCardsTC} from "../reducers/cards-reducer";
 
 
 const style = {
@@ -32,9 +32,9 @@ export const ModalWindow = () => {
     const handleModalClose = () => {
         dispatch(setModalWindowAC(false, 'add'))
     };
-    const addNewPack = () => {
+    const addNewPack = (packName: string) => {
+        dispatch(CreateCardsTC(packName))
 
-        dispatch(CreateCardsTC())
         dispatch(setModalWindowAC(false, 'add'))
     }
 
@@ -54,7 +54,6 @@ export const ModalWindow = () => {
                                                               packName={currentName}
                                                               closeModal={handleModalClose}
                             // updatePackName={}
-
 
 
                         />

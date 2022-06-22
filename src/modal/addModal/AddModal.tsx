@@ -7,7 +7,7 @@ import {addCardsAC} from "../../reducers/cards-reducer";
 type AddModalPropsType = {
     closeModal: () => void
     isLoading: boolean
-    addNewPack: () => void
+    addNewPack: (name:string) => void
     packName: string
 
 }
@@ -17,8 +17,7 @@ const AddModal = ({isLoading, addNewPack, packName, closeModal}: AddModalPropsTy
     const onChangeNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
-    let dis= value===''
-
+    let disabled = value === ''
 
 
     return (
@@ -26,13 +25,13 @@ const AddModal = ({isLoading, addNewPack, packName, closeModal}: AddModalPropsTy
         <div>
             <h3>Add New Pack</h3>
             <form>
-            <input value={value}
-                   onChange={onChangeNameHandler}
-            />
-            <Button onClick={addNewPack}
-                    disabled={dis}
-            >Add</Button>
-            <Button onClick={closeModal}>Cancel</Button>
+                <input value={value}
+                       onChange={onChangeNameHandler}
+                />
+                <Button onClick={()=>addNewPack(value)}
+                        disabled={disabled}
+                >Add</Button>
+                <Button onClick={closeModal}>Cancel</Button>
             </form>
         </div>
     );
