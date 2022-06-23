@@ -14,13 +14,10 @@ const SearchPacks = () => {
     const searchNameHandler = (e: ChangeEvent<HTMLInputElement>) => {
         dispatch(searchByNameAC(e.currentTarget.value))
     }
-    // const addPack = () => {
-    //     dispatch(CreateCardsTC())
-    //
-    // }
+
     const openModelWindowHandler=()=>{
 
-        dispatch(setModalWindowAC(true,'add'))
+        dispatch(setModalWindowAC(true,'add',''))
 
     }
 
@@ -35,7 +32,7 @@ const SearchPacks = () => {
 
             />
 
-            <Button onClick={openModelWindowHandler}>Add Card</Button>
+            <Button onClick={openModelWindowHandler}>Add Pack</Button>
 
             < ModalWindow/>
         </div>

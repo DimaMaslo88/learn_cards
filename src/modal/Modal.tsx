@@ -6,7 +6,9 @@ import AddModal from "./addModal/AddModal";
 import {AppStateType, useAppDispatch} from "../reducers/store";
 import {useSelector} from "react-redux";
 import {ComponentType, setModalWindowAC} from "../reducers/modal-reducer";
-import {addCardsAC, CreateCardsTC} from "../reducers/cards-reducer";
+import {addCardsAC, CreateCardsTC, DeletePackTC} from "../reducers/cards-reducer";
+import {DeleteModal} from "./deleteModal/DeleteModal";
+import CircularProgress from "@mui/material/CircularProgress";
 
 
 const style = {
@@ -27,16 +29,24 @@ export const ModalWindow = () => {
     const nameComponent = useSelector<AppStateType, ComponentType>(state => state.modals.nameComponent)
     const status = useSelector<AppStateType, boolean>(state => state.app.status)
     const currentName = useSelector<AppStateType, string>(state => state.cardPacks.params.packName)
+     // const id=useSelector<AppStateType,string>(state=>state.cardPacks.params.user_id)
 
 
     const handleModalClose = () => {
-        dispatch(setModalWindowAC(false, 'add'))
+        dispatch(setModalWindowAC(false, 'add', ''))
     };
     const addNewPack = (packName: string) => {
         dispatch(CreateCardsTC(packName))
 
-        dispatch(setModalWindowAC(false, 'add'))
+
     }
+    const deletePackHandler = (id:string) => {
+        dispatch(DeletePackTC(id))
+    }
+    // const deletePackHandler = (id: string) => {
+    //     dispatch(DeletePackTC(id))
+    //
+    // }
 
     return (
         <div>
@@ -49,18 +59,25 @@ export const ModalWindow = () => {
             >
                 <Fade in={isOpen}>
                     <Box sx={style}>
+
                         {nameComponent === 'add' && <AddModal isLoading={status}
                                                               addNewPack={addNewPack}
                                                               packName={currentName}
                                                               closeModal={handleModalClose}
                             // updatePackName={}
-
-
                         />
                         }
+                        {nameComponent === 'delete' && <DeleteModal
+                            title={'Delete Pack'}
+                            deletePack={deletePackHandler}
+                            closeModal={handleModalClose}
+
+
+                        />}
                     </Box>
                 </Fade>
             </Modal>
+
         </div>
     );
 }

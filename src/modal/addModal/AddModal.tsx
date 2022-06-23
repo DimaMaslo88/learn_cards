@@ -3,6 +3,7 @@ import Button from "../../common/button/Button";
 import {useDispatch} from "react-redux";
 import {useAppDispatch} from "../../reducers/store";
 import {addCardsAC} from "../../reducers/cards-reducer";
+import CircularProgress from "@mui/material/CircularProgress";
 
 type AddModalPropsType = {
     closeModal: () => void
@@ -33,6 +34,7 @@ const AddModal = ({isLoading, addNewPack, packName, closeModal}: AddModalPropsTy
                 >Add</Button>
                 <Button onClick={closeModal}>Cancel</Button>
             </form>
+
         </div>
     );
 };
