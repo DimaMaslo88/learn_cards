@@ -68,7 +68,7 @@ export const ModalWindow = () => {
                         />
                         }
                         {nameComponent === 'delete' && <DeleteModal
-                            title={'Delete Pack'}
+                            title={'Are You Sure Delete Pack ?'}
                             deletePack={deletePackHandler}
                             closeModal={handleModalClose}
 

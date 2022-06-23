@@ -6,23 +6,23 @@ import {AppStateType} from "../../reducers/store";
 
 type DeleteModalType = {
     title: string
-    deletePack: (id:string) => void
+    deletePack: (id: string) => void
     closeModal: () => void
 }
 
 export const DeleteModal = ({title, deletePack, closeModal}: DeleteModalType) => {
-const idPack=useSelector<AppStateType, string>(state=>state.modals.id)
-
+    const idPack = useSelector<AppStateType, string>(state => state.modals.id)
 
 
     return (
         <div>
             <h4 className={style.title}>{title}</h4>
-
-                 <Button onClick={ ()=>deletePack(idPack)}
+            <div className={style.buttons}>
+                <Button onClick={() => deletePack(idPack)}
                 >Delete</Button>
 
-            <Button onClick={closeModal}>Cancel</Button>
+                <Button onClick={closeModal}>Cancel</Button>
+            </div>
         </div>
     );
 };

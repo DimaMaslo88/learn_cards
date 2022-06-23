@@ -1,9 +1,6 @@
 import React, {ChangeEvent, useState} from 'react';
 import Button from "../../common/button/Button";
-import {useDispatch} from "react-redux";
-import {useAppDispatch} from "../../reducers/store";
-import {addCardsAC} from "../../reducers/cards-reducer";
-import CircularProgress from "@mui/material/CircularProgress";
+import style from "./AddModal.module.css"
 
 type AddModalPropsType = {
     closeModal: () => void
@@ -23,17 +20,23 @@ const AddModal = ({isLoading, addNewPack, packName, closeModal}: AddModalPropsTy
 
     return (
 
-        <div>
-            <h3>Add New Pack</h3>
-            <form>
-                <input value={value}
+        <div >
+            <h3 className={style.title}>Add New Pack</h3>
+
+                <div className={style.inputForm}>
+                <input
+                    className={style.input}
+                    value={value}
                        onChange={onChangeNameHandler}
                 />
+                </div>
+                <div className={style.buttons}>
                 <Button onClick={()=>addNewPack(value)}
                         disabled={disabled}
                 >Add</Button>
                 <Button onClick={closeModal}>Cancel</Button>
-            </form>
+                </div>
+
 
         </div>
     );
