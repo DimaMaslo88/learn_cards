@@ -6,9 +6,10 @@ import AddModal from "./addModal/AddModal";
 import {AppStateType, useAppDispatch} from "../reducers/store";
 import {useSelector} from "react-redux";
 import {ComponentType, setModalWindowAC} from "../reducers/modal-reducer";
-import {addCardsAC, CreateCardsTC, DeletePackTC} from "../reducers/cards-reducer";
+import {addCardsAC, CreateCardsTC, DeletePackTC, UpdatePackTC} from "../reducers/cards-reducer";
 import {DeleteModal} from "./deleteModal/DeleteModal";
 import CircularProgress from "@mui/material/CircularProgress";
+import {UpdateModal} from "./updateModal/UpdateModal";
 
 
 const style = {
@@ -29,7 +30,7 @@ export const ModalWindow = () => {
     const nameComponent = useSelector<AppStateType, ComponentType>(state => state.modals.nameComponent)
     const status = useSelector<AppStateType, boolean>(state => state.app.status)
     const currentName = useSelector<AppStateType, string>(state => state.cardPacks.params.packName)
-     // const id=useSelector<AppStateType,string>(state=>state.cardPacks.params.user_id)
+    // const id=useSelector<AppStateType,string>(state=>state.cardPacks.params.user_id)
 
 
     const handleModalClose = () => {
@@ -40,13 +41,12 @@ export const ModalWindow = () => {
 
 
     }
-    const deletePackHandler = (id:string) => {
+    const deletePackHandler = (id: string) => {
         dispatch(DeletePackTC(id))
     }
-    // const deletePackHandler = (id: string) => {
-    //     dispatch(DeletePackTC(id))
-    //
-    // }
+  const updateNamePackHandler=(id:string,name:string)=>{
+        dispatch(UpdatePackTC(id,name))
+  }
 
     return (
         <div>
@@ -71,6 +71,11 @@ export const ModalWindow = () => {
                             title={'Are You Sure Delete Pack ?'}
                             deletePack={deletePackHandler}
                             closeModal={handleModalClose}
+                        />}
+                        {nameComponent === 'update' && <UpdateModal
+                                                title={'Are You Want Update Your Pack?'}
+                                                updateNamePack={updateNamePackHandler}
+                                                closeModal={handleModalClose}
 
 
                         />}
