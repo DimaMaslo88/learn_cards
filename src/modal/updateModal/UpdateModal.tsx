@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import Button from "../../common/button/Button";
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../reducers/store";
-
+import style from "./UpdateModal.module.css"
 
 type UpdateModalType = {
     title: string
@@ -17,19 +17,24 @@ export const UpdateModal = ({title, closeModal, updateNamePack}: UpdateModalType
     const updateTitleHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
+    const disabled = value === ''
     return (
         <div>
-            <h4>{title}</h4>
-            <div>
-                <input value={value}
+            <h4 className={style.title}>{title}</h4>
+            <div className={style.form}>
+                <input className={style.input}
+                    value={value}
                        onChange={updateTitleHandler}
 
 
                 />
             </div>
 
-            <div>
-                <Button onClick={() => updateNamePack(idPack, value)}>Update</Button>
+            <div className={style.buttons}>
+                <Button onClick={() =>
+                    updateNamePack(idPack, value)}
+                        disabled={disabled}
+                >Update</Button>
                 <Button onClick={closeModal}>Cancel</Button>
             </div>
         </div>

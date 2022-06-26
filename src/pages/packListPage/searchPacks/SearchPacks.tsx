@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import style from "./SearchPacks.module.css"
 import {useSelector} from "react-redux";
 import {AppStateType, useAppDispatch} from "../../../reducers/store";
-import {CreateCardsTC, searchByNameAC} from "../../../reducers/cards-reducer";
+import { searchByNameAC} from "../../../reducers/cards-reducer";
 import Button from "../../../common/button/Button";
 
 import {setModalWindowAC} from "../../../reducers/modal-reducer";
