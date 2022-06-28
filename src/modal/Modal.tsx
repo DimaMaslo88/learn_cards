@@ -10,8 +10,10 @@ import {CreateCardsTC, DeletePackTC, UpdatePackTC} from "../reducers/cards-reduc
 import {DeleteModal} from "./deleteModal/DeleteModal";
 import {UpdateModal} from "./updateModal/UpdateModal";
 import {AddLearningCardsModal} from "./addLearningCardsModal/AddLearningCardsModal";
-import {CreateLearningCardsTC} from "../reducers/packCards-reducer";
-import {RequestAddCardType} from "../API/packCards-api";
+import {CreateLearningCardsTC, DeleteLearningCardsTC} from "../reducers/packCards-reducer";
+
+import {DeleteLearningCardsModal} from "./deleteLearningCardsModa/DeleteLearningCardsModal";
+import {UpdateLearningCardsModal} from "./updateLeaningCardsModal/UpdateLearningCardsModal";
 
 
 const style = {
@@ -34,7 +36,7 @@ export const ModalWindow = () => {
     const currentName = useSelector<AppStateType, string>(state => state.cardPacks.params.packName)
     // const id=useSelector<AppStateType,string>(state=>state.cardPacks.params.user_id)
 
-
+    console.log(nameComponent);
     const handleModalClose = () => {
         dispatch(setModalWindowAC(false, 'add', ''))
     };
@@ -49,8 +51,12 @@ export const ModalWindow = () => {
     const updateNamePackHandler = (id: string, name: string) => {
         dispatch(UpdatePackTC(id, name))
     }
-    const addNewLearningCardHandler = (cardsPack_id: string,question: string,answer: string,grade: number) => {
-        dispatch(CreateLearningCardsTC(cardsPack_id,question,answer ,grade))
+    const addNewLearningCardHandler = (question: string, answer: string, cardsPack_id: string) => {
+        dispatch(CreateLearningCardsTC(question, answer, cardsPack_id))
+    }
+
+    const deleteLearningCardsHandler = (id: string) => {
+        dispatch(DeleteLearningCardsTC(id))
     }
 
     return (
@@ -87,6 +93,20 @@ export const ModalWindow = () => {
                             title={'Add New Card'}
                             addNewLearningCard={addNewLearningCardHandler}
                             closeModal={handleModalClose}
+                        />}
+                        {nameComponent === 'deleteCard' && <DeleteLearningCardsModal
+                            title={'Are you sure delete card ?'}
+                            deleteLearningCards={deleteLearningCardsHandler}
+                            closeModal={handleModalClose}
+
+
+                        />}
+                        {nameComponent === 'updateCard' && <UpdateLearningCardsModal
+                                                                title={'Make Your Changes'}
+                                                                closeModal={handleModalClose}
+
+
+
                         />}
                     </Box>
                 </Fade>
