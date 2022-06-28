@@ -10,7 +10,7 @@ import {CreateCardsTC, DeletePackTC, UpdatePackTC} from "../reducers/cards-reduc
 import {DeleteModal} from "./deleteModal/DeleteModal";
 import {UpdateModal} from "./updateModal/UpdateModal";
 import {AddLearningCardsModal} from "./addLearningCardsModal/AddLearningCardsModal";
-import {CreateLearningCardsTC, DeleteLearningCardsTC} from "../reducers/packCards-reducer";
+import {CreateLearningCardsTC, DeleteLearningCardsTC, UpdateLearningCardsTC} from "../reducers/packCards-reducer";
 
 import {DeleteLearningCardsModal} from "./deleteLearningCardsModa/DeleteLearningCardsModal";
 import {UpdateLearningCardsModal} from "./updateLeaningCardsModal/UpdateLearningCardsModal";
@@ -58,6 +58,9 @@ export const ModalWindow = () => {
     const deleteLearningCardsHandler = (id: string) => {
         dispatch(DeleteLearningCardsTC(id))
     }
+    const updateLearningCardsHandler=(_id:string,question:string)=>{
+        dispatch(UpdateLearningCardsTC(_id,question))
+    }
 
     return (
         <div>
@@ -103,6 +106,7 @@ export const ModalWindow = () => {
                         />}
                         {nameComponent === 'updateCard' && <UpdateLearningCardsModal
                                                                 title={'Make Your Changes'}
+                                                                updateLearningCards={updateLearningCardsHandler}
                                                                 closeModal={handleModalClose}
 
 
