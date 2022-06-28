@@ -36,9 +36,9 @@ export const ModalWindow = () => {
     const currentName = useSelector<AppStateType, string>(state => state.cardPacks.params.packName)
     // const id=useSelector<AppStateType,string>(state=>state.cardPacks.params.user_id)
 
-    console.log(nameComponent);
+
     const handleModalClose = () => {
-        dispatch(setModalWindowAC(false, 'add', ''))
+        dispatch(setModalWindowAC(false, 'add', '',''))
     };
     const addNewPack = (packName: string) => {
         dispatch(CreateCardsTC(packName))

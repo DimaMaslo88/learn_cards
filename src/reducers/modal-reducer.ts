@@ -1,12 +1,14 @@
 const initialState = {
     isOpen: false,
     nameComponent: null,
-    id: ''
+    id: '',
+    question: ''
 }
 export type InitialStateType = {
     isOpen: boolean
     nameComponent: ComponentType
     id: string
+    question:string
 }
 
 export type ComponentType = 'add'
@@ -32,13 +34,14 @@ export const modalReducer = (state: InitialStateType = initialState, action: Mod
 
 
 export type SetModalWindowType = ReturnType<typeof setModalWindowAC>
-export const setModalWindowAC = (isOpen: boolean, nameComponent: ComponentType, id: string) => {
+export const setModalWindowAC = (isOpen: boolean, nameComponent: ComponentType, id: string,question:string) => {
     return {
         type: "SET-MODAL-WINDOW",
         payload: {
             isOpen,
             nameComponent,
-            id
+            id,
+            question
         }
     } as const
 }

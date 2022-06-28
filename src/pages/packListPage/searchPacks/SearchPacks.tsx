@@ -17,7 +17,7 @@ const SearchPacks = () => {
 
     const openModelWindowHandler=()=>{
 
-        dispatch(setModalWindowAC(true,'add',''))
+        dispatch(setModalWindowAC(true,'add','',''))
 
     }
 
