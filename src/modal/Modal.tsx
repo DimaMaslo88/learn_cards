@@ -1,5 +1,4 @@
 import React from 'react';
-
 import Modal from "@material-ui/core/Modal";
 import {Box, Fade} from "@material-ui/core";
 import AddModal from "./addModal/AddModal";
@@ -14,6 +13,7 @@ import {CreateLearningCardsTC, DeleteLearningCardsTC, UpdateLearningCardsTC} fro
 
 import {DeleteLearningCardsModal} from "./deleteLearningCardsModa/DeleteLearningCardsModal";
 import {UpdateLearningCardsModal} from "./updateLeaningCardsModal/UpdateLearningCardsModal";
+import LearnCardsModal from "./learnCards/LearnCardsModal";
 
 
 const style = {
@@ -61,6 +61,9 @@ export const ModalWindow = () => {
     const updateLearningCardsHandler=(_id:string,question:string)=>{
         dispatch(UpdateLearningCardsTC(_id,question))
     }
+    // const learningCardsHandler=(_id:string,name:string)=>{
+    //     dispatch(UpdateLearningCardsTC(_id,question))
+    // }
 
     return (
         <div>
@@ -112,6 +115,9 @@ export const ModalWindow = () => {
 
 
                         />}
+                        {nameComponent === 'learnCards' && <LearnCardsModal
+                            closeModal={handleModalClose}
+                            />}
                     </Box>
                 </Fade>
             </Modal>

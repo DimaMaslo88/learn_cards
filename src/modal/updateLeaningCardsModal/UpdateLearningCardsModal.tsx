@@ -13,6 +13,7 @@ type UpdateLearningCardsModalType = {
 export const UpdateLearningCardsModal = ({title, closeModal, updateLearningCards}: UpdateLearningCardsModalType) => {
     const id = useSelector<AppStateType, string>(state => state.modals.id)
     const name = useSelector<AppStateType, string>(state => state.modals.question)
+    console.log(name,'name')
 
     const [value, setValue] = useState<string>(name)
     const onChangeLearningCard = (e: ChangeEvent<HTMLInputElement>) => {
