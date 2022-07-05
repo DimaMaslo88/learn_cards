@@ -1,0 +1,8 @@
+.cardsList{
+    display: flex;
+    width: 100%;
+}
+.pageCount{
+    display: flex;
+    justify-content: space-between;
+}

@@ -1,0 +1,12 @@
+.packList{
+    display: flex;
+    width: 100%;
+}
+.pageCount{
+    display: flex;
+    justify-content: space-between;
+    margin: 50px;
+}
+.pages{
+    font-weight: bold;
+}

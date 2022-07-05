@@ -7,12 +7,12 @@ import {AppStateType} from "../../reducers/store";
 
 type AddLearningCardsModalType = {
     title: string
-    addNewLearningCard: ( question: string, answer: string,cardsPack_id: string) => void
+    addNewLearningCard: (question: string, answer: string, cardsPack_id: string) => void
     closeModal: () => void
 }
 
 export const AddLearningCardsModal = ({title, addNewLearningCard, closeModal}: AddLearningCardsModalType) => {
-    const packId=useSelector<AppStateType,string>(state=>state.cards.cardsPack_id)
+    const packId = useSelector<AppStateType, string>(state => state.cards.cardsPack_id)
 
     const [question, setQuestion] = useState<string>('')
     const [answer, setAnswer] = useState<string>('')
@@ -27,16 +27,20 @@ export const AddLearningCardsModal = ({title, addNewLearningCard, closeModal}: A
             <h4 className={style.title}>{title}</h4>
             <div className={style.inputForm}>
                 <div>
-                    <input value={question}
+                    <input placeholder='question'
+                           value={question}
                            onChange={onChangeQuestionHandler}/>
                 </div>
                 <div>
-                    <input value={answer}
-                           onChange={onChangeAnswerHandler}/>
+                    <input
+
+                        placeholder='answer'
+                        value={answer}
+                        onChange={onChangeAnswerHandler}/>
                 </div>
             </div>
             <div>
-                <Button onClick={() => addNewLearningCard(question, answer,packId)}
+                <Button onClick={() => addNewLearningCard(question, answer, packId)}
 
                 >Save</Button>
                 <Button onClick={closeModal}>Cancel</Button>
