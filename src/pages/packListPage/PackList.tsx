@@ -67,9 +67,9 @@ const PackList = () => {
 
 
             {cards.map(card => {
-                // const setChangePageToCard = (id: string) => {
-                //     navigate(`${card._id}`)
-                // }
+                const setChangePageToCard = (id: string) => {
+                    navigate(`${card._id}`)
+                }
 
                 return <div key={card._id} className={style.packList}>
                     <a href={`learn_cards#/pack-list/${card._id}`}>
