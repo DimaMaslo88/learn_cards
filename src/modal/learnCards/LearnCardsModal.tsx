@@ -6,6 +6,7 @@ import {CardType, SetCardsTC, setPackAC} from "../../reducers/packCards-reducer"
 import {useParams} from "react-router-dom";
 import {CardPacksType} from "../../API/cards-api";
 import style from './LearnCards.module.css'
+
 type LearnCardsModalType = {
     closeModal: () => void
 
@@ -42,6 +43,7 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
         updated: '',
         _id: '',
     })
+
     useEffect(() => {
         if (first) {
             dispatch(SetCardsTC())
@@ -58,20 +60,21 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
             <h4>Learn Card</h4>
             <p>{card.question}</p>
             <div className={style.button}>
-            <Button onClick={() => {
-                setShow(true)
-            }}>Show Answer</Button>
+                {!show && <Button onClick={() => {
+                    setShow(true)
+                }}>Show Answer</Button>
+                }
 
-            {show && (
-                <>
-                    <div>
-                        {card.answer}
-                    </div>
+                {show && (
+                    <>
+                        <div>
+                            {card.answer}
+                        </div>
 
-                    <Button>Next</Button>
-                </>
-            )}
-            <Button onClick={closeModal}> Close </Button>
+                        <Button>Next</Button>
+                    </>
+                )}
+                <Button onClick={closeModal}> Close </Button>
             </div>
         </div>
     );
