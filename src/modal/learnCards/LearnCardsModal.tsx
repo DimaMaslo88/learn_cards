@@ -3,10 +3,13 @@ import {useSelector} from "react-redux";
 import {AppStateType, useAppDispatch} from "../../reducers/store";
 import Button from "../../common/button/Button";
 import {CardType, SetCardsTC, setPackAC} from "../../reducers/packCards-reducer";
-import {useParams} from "react-router-dom";
+
 import {CardPacksType} from "../../API/cards-api";
 import style from './LearnCards.module.css'
-
+import Icon from '@mui/material/Icon';
+import SentimentVeryDissatisfied from "@material-ui/icons/SentimentVeryDissatisfied";
+import {SentimentDissatisfied} from "@material-ui/icons";
+import {Grades} from "../../components/Grades";
 type LearnCardsModalType = {
     closeModal: () => void
 
@@ -23,10 +26,10 @@ const getCard = (cards: CardType[]) => {
 
     return cards[res.id + 1];
 }
+
+
 const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
     const dispatch = useAppDispatch();
-    // let {pack_id} = useParams()
-    // const question = useSelector<AppStateType, string>(state => state.modals.id)
 
     const cards = useSelector<AppStateType, CardType[]>(state => state.cards.cards)
     const pack = useSelector<AppStateType, CardPacksType[]>(state => state.cardPacks.cardPacks)
@@ -53,12 +56,19 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
 
     }, [cards, first])
 
+    const nextHandler = () => {
+        setShow(false)
+        if (cards.length > 0) {
+            setCard(getCard(cards))
+        } else {
 
+        }
+    }
     return (
 
         <div>
             <h4>Learn Card</h4>
-            <p>{card.question}</p>
+            <h5>Question:</h5> {card.question}
             <div className={style.button}>
                 {!show && <Button onClick={() => {
                     setShow(true)
@@ -68,10 +78,12 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
                 {show && (
                     <>
                         <div>
-                            {card.answer}
+                            <h5>Answer:</h5> {card.answer}
                         </div>
 
-                        <Button>Next</Button>
+                      <Grades/>
+
+                        <Button onClick={nextHandler}>Next</Button>
                     </>
                 )}
                 <Button onClick={closeModal}> Close </Button>
