@@ -6,7 +6,8 @@ import {setModalWindowAC} from "./modal-reducer";
 
 const SET_USER = 'cards/SET_USER'
 const SET_CARD_PACK_ID = 'cards/SET_CARD_PACK_ID'
-const ADD_LEARN_CARD = "cards/ADD-LEARNING-CARDS"
+const ADD_LEARN_CARD = 'cards/ADD-LEARNING-CARDS'
+const SET_GRADE = 'cards/SET-GRADE'
 
 const initialState: InitialStateType = {
     cards: [],
@@ -30,6 +31,15 @@ export const packCardsReducer = (state: InitialStateType = initialState, action:
         case "cards/ADD-LEARNING-CARDS": {
             return {...state, ...action.payload}
         }
+        case "cards/SET-GRADE": {
+            return {
+                ...state,
+                cards: state.cards.map(card => card._id === action.payload.card_id ? {
+                    ...card,
+                    grade: action.payload.grade
+                } : card)
+            }
+        }
         default:
             return state
     }
@@ -49,8 +59,17 @@ export const addLearningCardsAc = (question: string, answer: string, grade: numb
 
     } as const
 }
+export const setGradeAC = (grade: number, card_id: string) => {
+    return {
+        type: SET_GRADE,
+        payload: {
+            grade,
+            card_id
 
+        }
 
+    } as const
+}
 // thunks
 export const SetCardsTC = (): AppThunk =>
     (dispatch, getState: () => AppStateType) => {
@@ -81,7 +100,7 @@ export const CreateLearningCardsTC = (question: string, answer: string, cardsPac
         })
         .finally(() => {
             dispatch(setStatusAppAC(false))
-            dispatch(setModalWindowAC(false, 'addCard', '',''))
+            dispatch(setModalWindowAC(false, 'addCard', '', ''))
         })
 }
 
@@ -97,7 +116,7 @@ export const DeleteLearningCardsTC = (id: string): AppThunk => (dispatch) => {
         })
         .finally(() => {
             dispatch(setStatusAppAC(false))
-            dispatch(setModalWindowAC(false, 'deleteCard', '',''))
+            dispatch(setModalWindowAC(false, 'deleteCard', '', ''))
         })
 }
 export const UpdateLearningCardsTC = (_id: string, question: string): AppThunk => (dispatch) => {
@@ -111,7 +130,7 @@ export const UpdateLearningCardsTC = (_id: string, question: string): AppThunk =
         })
         .finally(() => {
             dispatch(setStatusAppAC(false))
-            dispatch(setModalWindowAC(false, 'updateCard', '',''))
+            dispatch(setModalWindowAC(false, 'updateCard', '', ''))
         })
 }
 
@@ -143,3 +162,4 @@ export type CardsActionsType =
     ReturnType<typeof setCardsAC>
     | ReturnType<typeof setPackAC>
     | ReturnType<typeof addLearningCardsAc>
+    | ReturnType<typeof setGradeAC>

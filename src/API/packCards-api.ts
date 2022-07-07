@@ -14,6 +14,9 @@ export const packCardsAPI = {
     },
     updateCard(_id:string,question:string){
         return instance.put<AxiosResponse<UpdateResponseType>>('cards/card',{card:{_id,question}})
+    },
+    createGrade({grade,card_id}:RequestGradeType){
+        return instance.put<ResponseGradeType>('cards/grade',{params:{grade, card_id}})
     }
 }
 
@@ -28,11 +31,15 @@ export const packCardsAPI = {
     page?: number
     pageCount?: number
 }
- export type RequestAddCardType = {
-    cardsPack_id: string
-    question: string
-    answer: string
-    grade: number
+ export type ResponseGradeType = {
+     updatedGrade: {
+         _id: string
+         cardsPack_id:  string
+         card_id:  string
+         user_id:  string
+         grade: number
+         shots:number
+     }
 }
 
 export type ResponseDeleteType={
@@ -42,4 +49,8 @@ export type UpdateResponseType={
     id:string
     question: string
     comments?: string
+}
+export type RequestGradeType={
+    grade: number
+    card_id: string
 }
