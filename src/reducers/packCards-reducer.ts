@@ -1,4 +1,4 @@
-import {packCardsAPI} from "../API/packCards-api";
+import {packCardsAPI, RequestGradeType} from "../API/packCards-api";
 import {handleServerError} from "../error-utils/error";
 import {AppStateType, AppThunk} from "./store";
 import {setStatusAppAC} from "./app-reducer";
@@ -8,6 +8,7 @@ const SET_USER = 'cards/SET_USER'
 const SET_CARD_PACK_ID = 'cards/SET_CARD_PACK_ID'
 const ADD_LEARN_CARD = 'cards/ADD-LEARNING-CARDS'
 const SET_GRADE = 'cards/SET-GRADE'
+const SET_CARD_ID = 'cards/SET-CARD-ID'
 
 const initialState: InitialStateType = {
     cards: [],
@@ -19,6 +20,7 @@ const initialState: InitialStateType = {
     packUserId: '',
     cardsPack_id: '',
     sortCards: '0grade',
+    randomCardId: ''
 }
 
 export const packCardsReducer = (state: InitialStateType = initialState, action:
@@ -30,6 +32,9 @@ export const packCardsReducer = (state: InitialStateType = initialState, action:
             return {...state, cardsPack_id: action.cardsPack_id,}
         case "cards/ADD-LEARNING-CARDS": {
             return {...state, ...action.payload}
+        }
+        case "cards/SET-CARD-ID":{
+            return {...state,randomCardId:action.card_id}
         }
         case "cards/SET-GRADE": {
             return {
@@ -48,6 +53,7 @@ export const packCardsReducer = (state: InitialStateType = initialState, action:
 // actions
 export const setCardsAC = (state: InitialStateType) => ({type: SET_USER, state} as const)
 export const setPackAC = (cardsPack_id: string) => ({type: SET_CARD_PACK_ID, cardsPack_id} as const)
+export const setIdCardAC = (card_id: string) => ({type: SET_CARD_ID, card_id} as const)
 export const addLearningCardsAc = (question: string, answer: string, grade: number) => { // добавляю карточки для обучения
     return {
         type: ADD_LEARN_CARD,
@@ -133,6 +139,21 @@ export const UpdateLearningCardsTC = (_id: string, question: string): AppThunk =
             dispatch(setModalWindowAC(false, 'updateCard', '', ''))
         })
 }
+export const GradeCardsTC = (grade: number, card_id: string): AppThunk => (dispatch) => {
+    dispatch(setStatusAppAC(true))
+    packCardsAPI.createGrade(grade, card_id)
+        .then(res => {
+
+            dispatch(setGradeAC(res.data.updatedGrade.grade, res.data.updatedGrade.card_id))
+        })
+        .catch(error => {
+            handleServerError(error, dispatch)
+        })
+        .finally(() => {
+            dispatch(setStatusAppAC(false))
+
+        })
+}
 
 
 // types
@@ -146,6 +167,7 @@ export type InitialStateType = {
     packUserId: string
     cardsPack_id: string
     sortCards: string
+    randomCardId: string
 }
 export type CardType = {
     answer: string
@@ -163,3 +185,4 @@ export type CardsActionsType =
     | ReturnType<typeof setPackAC>
     | ReturnType<typeof addLearningCardsAc>
     | ReturnType<typeof setGradeAC>
+    | ReturnType<typeof setIdCardAC>

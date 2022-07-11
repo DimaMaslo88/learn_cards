@@ -2,23 +2,22 @@ import React, {useEffect, useState} from 'react';
 import {useSelector} from "react-redux";
 import {AppStateType, useAppDispatch} from "../../reducers/store";
 import Button from "../../common/button/Button";
-import {CardType, SetCardsTC, setPackAC} from "../../reducers/packCards-reducer";
+import {CardType, SetCardsTC, setIdCardAC, setPackAC} from "../../reducers/packCards-reducer";
 
-import {CardPacksType} from "../../API/cards-api";
 import style from './LearnCards.module.css'
-import Icon from '@mui/material/Icon';
-import SentimentVeryDissatisfied from "@material-ui/icons/SentimentVeryDissatisfied";
-import {SentimentDissatisfied} from "@material-ui/icons";
+
 import {Grades} from "../../components/Grades";
+
+
 type LearnCardsModalType = {
     closeModal: () => void
 
 }
 const getCard = (cards: CardType[]) => {
-    const sum = cards.reduce((acc, card) => acc + (1 - card.grade) * (1 - card.grade), 0);
+    const sum = cards.reduce((acc, card) => acc + (6 - card.grade) * (6 - card.grade), 0);
     const rand = Math.random() * sum;
     const res = cards.reduce((acc: { sum: number, id: number }, card, i) => {
-            const newSum = acc.sum + (1 - card.grade) * (1 - card.grade);
+            const newSum = acc.sum + (6 - card.grade) * (6 - card.grade);
             return {sum: newSum, id: newSum < rand ? i : acc.id}
         }
         , {sum: 0, id: -1});
@@ -29,10 +28,11 @@ const getCard = (cards: CardType[]) => {
 
 
 const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
+
     const dispatch = useAppDispatch();
 
     const cards = useSelector<AppStateType, CardType[]>(state => state.cards.cards)
-    const pack = useSelector<AppStateType, CardPacksType[]>(state => state.cardPacks.cardPacks)
+    const name = useSelector<AppStateType, string>(state => state.cardPacks.params.packName)
     const [show, setShow] = useState<boolean>(false)
     const [first, setFirst] = useState<boolean>(true)
     const [card, setCard] = useState<CardType>({
@@ -48,18 +48,25 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
     })
 
     useEffect(() => {
+
         if (first) {
             dispatch(SetCardsTC())
             setFirst(false)
         }
-        if (cards.length > 0) setCard(getCard(cards));
+        if (cards.length > 0) {
+            const card = getCard(cards)
+            setCard(card)
+            dispatch(setIdCardAC(card._id))
+        }
 
     }, [cards, first])
 
     const nextHandler = () => {
         setShow(false)
         if (cards.length > 0) {
-            setCard(getCard(cards))
+            const card = getCard(cards)
+            setCard(card)
+            dispatch(setIdCardAC(card._id))
         } else {
 
         }
@@ -67,7 +74,7 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
     return (
 
         <div>
-            <h4>Learn Card</h4>
+            <h4>Learn Card:{name}</h4>
             <h5>Question:</h5> {card.question}
             <div className={style.button}>
                 {!show && <Button onClick={() => {
@@ -80,9 +87,9 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
                         <div>
                             <h5>Answer:</h5> {card.answer}
                         </div>
-
-                      <Grades/>
-
+<p>
+                        <Grades/>
+</p>
                         <Button onClick={nextHandler}>Next</Button>
                     </>
                 )}

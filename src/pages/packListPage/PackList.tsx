@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
-import { FetchCardsTC, setPageAC} from "../../reducers/cards-reducer";
+import {FetchCardsTC, setPageAC} from "../../reducers/cards-reducer";
 import {CardPacksType} from "../../API/cards-api";
 import {AppStateType, useAppDispatch} from "../../reducers/store";
 import {Navigate, useNavigate} from "react-router-dom";
@@ -9,6 +9,7 @@ import style from './PackList.module.css'
 import Button from "../../common/button/Button";
 import Pagination from "./pagination/Pagination";
 import {setModalWindowAC} from "../../reducers/modal-reducer";
+import {setIdCardAC} from "../../reducers/packCards-reducer";
 
 
 const PackList = () => {
@@ -47,17 +48,18 @@ const PackList = () => {
     }
     const openModelWindowHandler = (id: string) => {
 
-        dispatch(setModalWindowAC(true, 'delete', id,''))
+        dispatch(setModalWindowAC(true, 'delete', id, ''))
 
     }
     const openUpdateModelWindowHandler = (id: string) => {
 
-        dispatch(setModalWindowAC(true, 'update', id,''))
+        dispatch(setModalWindowAC(true, 'update', id, ''))
 
     }
     const openLearnModelWindowHandler = (id: string) => {
+        navigate(`${id}`)
+        dispatch(setModalWindowAC(true, 'learnCards', id, ''))
 
-        dispatch(setModalWindowAC(true, 'learnCards', id,''))
 
     }
 

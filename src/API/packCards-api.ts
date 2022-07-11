@@ -15,8 +15,8 @@ export const packCardsAPI = {
     updateCard(_id:string,question:string){
         return instance.put<AxiosResponse<UpdateResponseType>>('cards/card',{card:{_id,question}})
     },
-    createGrade({grade,card_id}:RequestGradeType){
-        return instance.put<ResponseGradeType>('cards/grade',{params:{grade, card_id}})
+    createGrade(grade:number,card_id:string){
+        return instance.put<ResponseGradeType>('cards/grade',{grade, card_id})
     }
 }
 
