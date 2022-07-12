@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
-import {FetchCardsTC, setPageAC} from "../../reducers/cards-reducer";
+import {addCardsAC, FetchCardsTC, setPageAC} from "../../reducers/cards-reducer";
 import {CardPacksType} from "../../API/cards-api";
 import {AppStateType, useAppDispatch} from "../../reducers/store";
 import {Navigate, useNavigate} from "react-router-dom";
@@ -30,17 +30,12 @@ const PackList = () => {
     const setNewPageHandler = (page: number) => {
         dispatch(setPageAC(page))
     }
-    // const deletePackHandler = (id: string) => {
-    //     dispatch(DeletePackTC(id))
-    //
-    // }
-    // const updatePackHandler = (id: string) => {
-    //     dispatch(UpdatePackTC(id))
-    // }
+
 
     useEffect(() => {
 
         dispatch(FetchCardsTC())
+
     }, [packPage, userId, sort, packName])
 
     if (!isLoggedIn) {

@@ -21,6 +21,7 @@ const initialState: InitialStateType = {
     cardsPack_id: '',
     sortCards: '0grade',
     randomCardId: ''
+
 }
 
 export const packCardsReducer = (state: InitialStateType = initialState, action:

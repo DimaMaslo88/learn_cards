@@ -7,6 +7,7 @@ import {CardType, SetCardsTC, setIdCardAC, setPackAC} from "../../reducers/packC
 import style from './LearnCards.module.css'
 
 import {Grades} from "../../components/Grades";
+import {addCardsAC} from "../../reducers/cards-reducer";
 
 
 type LearnCardsModalType = {
@@ -57,9 +58,10 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
             const card = getCard(cards)
             setCard(card)
             dispatch(setIdCardAC(card._id))
+            dispatch(addCardsAC(name))
         }
 
-    }, [cards, first])
+    }, [cards, first,name])
 
     const nextHandler = () => {
         setShow(false)
@@ -88,7 +90,7 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
                             <h5>Answer:</h5> {card.answer}
                         </div>
 <p>
-                        <Grades/>
+                        <Grades />
 </p>
                         <Button onClick={nextHandler}>Next</Button>
                     </>

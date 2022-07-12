@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import Button from "../../common/button/Button";
 import {useSelector} from "react-redux";
 import {AppStateType} from "../../reducers/store";
-
+import style from './UpdateLearningCards.module.scss'
 
 type UpdateLearningCardsModalType = {
     title: string
@@ -22,15 +22,19 @@ export const UpdateLearningCardsModal = ({title, closeModal, updateLearningCards
 
 
     return (
-        <div>
+        <div className={style.update}>
             <h4>{title}</h4>
-            <input
+            <div>
+            <input className={style.input}
                 value={value}
                 onChange={onChangeLearningCard}
 
             />
+            </div>
+            <div className={style.button}>
             <Button onClick={() => updateLearningCards(id, value)}>Update</Button>
             <Button onClick={closeModal}>Cancel</Button>
+            </div>
         </div>
     );
 };

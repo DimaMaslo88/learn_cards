@@ -8,7 +8,7 @@ import {FormControl, IconContainerProps, Rating} from "@mui/material";
 import {styled} from "@mui/material/styles"
 import {useSelector} from "react-redux";
 
-// const grades=['bad','not bad','good','very good','excellent']
+
 export const Grades = () => {
     const idCard = useSelector<AppStateType,string>(state => state.cards.randomCardId)
 
@@ -57,8 +57,9 @@ export const Grades = () => {
 
     const onChangeHandler = (e: React.SyntheticEvent, value: number | null) => {//fix
         if (value !== null) {
-
             dispatch(GradeCardsTC(value, idCard))
+
+
         }
     }
 
@@ -71,7 +72,6 @@ export const Grades = () => {
                     name='highlight-selected-only'
                     defaultValue={1}
                     onChange={onChangeHandler}
-
                     IconContainerComponent={IconContainer}
                     getLabelText={(value: number) => iconsToGrade[value].label}
                     highlightSelectedOnly
