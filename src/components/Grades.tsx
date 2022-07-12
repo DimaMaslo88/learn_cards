@@ -77,14 +77,7 @@ export const Grades = () => {
                     highlightSelectedOnly
                 />
             </FormControl>
-            {/*{grades.map((g, i) => (*/}
-            {/*    <div>*/}
-            {/*        /!*<SentimentVeryDissatisfied key={'bad' + i} onClick={() => {*!/*/}
-            {/*        /!*}}/>*!/*/}
-            {/*        /!*<SentimentDissatisfied key={'not bad' + i} onClick={() => {*!/*/}
-            {/*        /!*}}/>*!/*/}
-            {/*        {g}</div>*/}
-            {/*))}*/}
+
 
         </div>
     );
