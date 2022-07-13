@@ -9,6 +9,7 @@ const SET_CARD_PACK_ID = 'cards/SET_CARD_PACK_ID'
 const ADD_LEARN_CARD = 'cards/ADD-LEARNING-CARDS'
 const SET_GRADE = 'cards/SET-GRADE'
 const SET_CARD_ID = 'cards/SET-CARD-ID'
+const SORT_CARDS = 'cards/SORT-CARD'
 
 const initialState: InitialStateType = {
     cards: [],
@@ -34,8 +35,8 @@ export const packCardsReducer = (state: InitialStateType = initialState, action:
         case "cards/ADD-LEARNING-CARDS": {
             return {...state, ...action.payload}
         }
-        case "cards/SET-CARD-ID":{
-            return {...state,randomCardId:action.card_id}
+        case "cards/SET-CARD-ID": {
+            return {...state, randomCardId: action.card_id}
         }
         case "cards/SET-GRADE": {
             return {
@@ -46,6 +47,9 @@ export const packCardsReducer = (state: InitialStateType = initialState, action:
                 } : card)
             }
         }
+        case 'cards/SORT-CARD': {
+            return {...state, sortCards: action.sort}
+        }
         default:
             return state
     }
@@ -55,6 +59,13 @@ export const packCardsReducer = (state: InitialStateType = initialState, action:
 export const setCardsAC = (state: InitialStateType) => ({type: SET_USER, state} as const)
 export const setPackAC = (cardsPack_id: string) => ({type: SET_CARD_PACK_ID, cardsPack_id} as const)
 export const setIdCardAC = (card_id: string) => ({type: SET_CARD_ID, card_id} as const)
+export const sortingCardsAC = (sort: string) => {
+    return {
+        type: SORT_CARDS,
+        sort
+
+    } as const
+}
 export const addLearningCardsAc = (question: string, answer: string, grade: number) => { // добавляю карточки для обучения
     return {
         type: ADD_LEARN_CARD,
@@ -187,3 +198,4 @@ export type CardsActionsType =
     | ReturnType<typeof addLearningCardsAc>
     | ReturnType<typeof setGradeAC>
     | ReturnType<typeof setIdCardAC>
+    | ReturnType<typeof sortingCardsAC>

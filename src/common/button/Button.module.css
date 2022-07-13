@@ -8,6 +8,10 @@
 .red:hover {
     color: red;
     box-shadow: inset 0 0 10px rgba(238, 18, 18, 0.6), 0 0 9px 3px rgba(152, 35, 35, 0.3);
+    background: rgba(255, 0, 0, 0.2);
+}
+.red:before{
+    background: linear-gradient(to right, transparent 1%, rgba(181, 222, 243, 0.1) 40%, rgba(218, 26, 26, 0.4) 60%, transparent 100%);
 }
 
 button {
@@ -29,7 +33,7 @@ button {
 }
 
 button:hover {
-    color: rgb(92, 255, 27);
+    color: rgb(255, 255, 255);
     box-shadow: inset 0 0 10px rgb(36, 255, 72), 0 0 9px 3px rgba(27, 178, 255, 0.2);
     transition-duration: 1s;
     background: rgb(92, 255, 27);

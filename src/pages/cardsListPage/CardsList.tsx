@@ -6,7 +6,7 @@ import style from "../cardsListPage/CardsList.module.css";
 import {CardType, SetCardsTC, setPackAC} from "../../reducers/packCards-reducer";
 import Button from "../../common/button/Button";
 import {setModalWindowAC} from "../../reducers/modal-reducer";
-
+import s from '../../common/button/Button.module.css'
 
 const CardsList = () => {
     const dispatch = useAppDispatch()
@@ -14,7 +14,7 @@ const CardsList = () => {
     const isLoggedIn = useSelector<AppStateType, boolean>(state => state.auth.isLoggedIn)
     const cards = useSelector<AppStateType, CardType[]>(state => state.cards.cards)
     const pageCount = useSelector<AppStateType, number>(state => state.cards.pageCount)
-
+    const sort = useSelector<AppStateType, string>(state => state.cards.sortCards)
     const onClickHandler = () => {
         dispatch(SetCardsTC())
     }
@@ -25,7 +25,7 @@ const CardsList = () => {
             dispatch(setPackAC(pack_id) as any)
         }
         dispatch(SetCardsTC())
-    }, [pack_id])
+    }, [pack_id, sort])
 
     if (!isLoggedIn) {
         return <Navigate to={'/login'}/>
@@ -56,7 +56,7 @@ const CardsList = () => {
                     <div style={{width: '250px'}}>{grade}</div>
                     <div style={{width: '250px'}}>{updated}</div>
                     <div>
-                        <Button onClick={() => openModalWindowDeleteLearningCard(_id)}>Delete</Button>
+                        <Button className={s.red} onClick={() => openModalWindowDeleteLearningCard(_id)}>Delete</Button>
                         <Button onClick={() => openModalWindowUpdateLearningCard(_id, question)}>Update</Button>
                     </div>
                 </div>

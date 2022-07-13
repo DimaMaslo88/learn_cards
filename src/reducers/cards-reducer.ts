@@ -78,7 +78,7 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Gen
         }
         case "pack/SET-PAGE": {
             return {...state, page: action.page}
-            // return {...state, params: state.params, page: action.page}
+
         }
         case "pack/ID-FILTER-PACK": {
 

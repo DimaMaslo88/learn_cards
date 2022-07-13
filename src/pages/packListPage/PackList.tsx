@@ -9,7 +9,7 @@ import style from './PackList.module.css'
 import Button from "../../common/button/Button";
 import Pagination from "./pagination/Pagination";
 import {setModalWindowAC} from "../../reducers/modal-reducer";
-import {setIdCardAC} from "../../reducers/packCards-reducer";
+import s from "../../common/button/Button.module.css";
 
 
 const PackList = () => {
@@ -75,7 +75,7 @@ const PackList = () => {
                     <div style={{width: '250px'}}>{card.cardsCount}</div>
                     <div style={{width: '250px'}}>{card.updated}</div>
 
-                    <Button onClick={() => openModelWindowHandler(card._id)}>Del</Button>
+                    <Button className={s.red} onClick={() => openModelWindowHandler(card._id)}>Del</Button>
                     <Button onClick={() => openUpdateModelWindowHandler(card._id)}>Update</Button>
                     <Button onClick={() => openLearnModelWindowHandler(card._id)}>Learn</Button>
                 </div>
