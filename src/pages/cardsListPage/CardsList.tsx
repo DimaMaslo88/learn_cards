@@ -15,6 +15,7 @@ const CardsList = () => {
     const cards = useSelector<AppStateType, CardType[]>(state => state.cards.cards)
     const pageCount = useSelector<AppStateType, number>(state => state.cards.pageCount)
     const sort = useSelector<AppStateType, string>(state => state.cards.sortCards)
+    const userId = useSelector<AppStateType, string>(state => state.cardPacks.params.user_id)
     const onClickHandler = () => {
         dispatch(SetCardsTC())
     }
@@ -56,7 +57,7 @@ const CardsList = () => {
                     <div style={{width: '250px'}}>{grade}</div>
                     <div style={{width: '250px'}}>{updated}</div>
                     <div>
-                        <Button className={s.red} onClick={() => openModalWindowDeleteLearningCard(_id)}>Delete</Button>
+                        <Button disabled={!userId} className={s.red} onClick={() => openModalWindowDeleteLearningCard(_id)}>Delete</Button>
                         <Button onClick={() => openModalWindowUpdateLearningCard(_id, question)}>Update</Button>
                     </div>
                 </div>

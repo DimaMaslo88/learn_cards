@@ -75,7 +75,7 @@ const PackList = () => {
                     <div style={{width: '250px'}}>{card.cardsCount}</div>
                     <div style={{width: '250px'}}>{card.updated}</div>
 
-                    <Button className={s.red} onClick={() => openModelWindowHandler(card._id)}>Del</Button>
+                    <Button disabled={!userId} className={s.red} onClick={() => openModelWindowHandler(card._id)}>Del</Button>
                     <Button onClick={() => openUpdateModelWindowHandler(card._id)}>Update</Button>
                     <Button onClick={() => openLearnModelWindowHandler(card._id)}>Learn</Button>
                 </div>
