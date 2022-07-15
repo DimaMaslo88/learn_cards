@@ -8,7 +8,7 @@ import style from './PackList.module.css'
 import Button from "../../common/button/Button";
 import {setModalWindowAC} from "../../reducers/modal-reducer";
 import s from "../../common/button/Button.module.css";
-import BasicPagination from './pagination/Pagination';
+import BasicPagination from '../../common/pagination/Pagination';
 
 
 const PackList = () => {
@@ -79,7 +79,8 @@ const PackList = () => {
 
                     <Button disabled={!userId} className={s.red}
                             onClick={() => openModelWindowHandler(card._id)}>Del</Button>
-                    <Button onClick={() => openUpdateModelWindowHandler(card._id)}>Update</Button>
+                    <Button disabled={!userId}
+                            onClick={() => openUpdateModelWindowHandler(card._id)}>Update</Button>
                     <Button onClick={() => openLearnModelWindowHandler(card._id)}>Learn</Button>
                 </div>
 

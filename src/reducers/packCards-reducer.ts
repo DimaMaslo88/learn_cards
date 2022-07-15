@@ -10,10 +10,12 @@ const ADD_LEARN_CARD = 'cards/ADD-LEARNING-CARDS'
 const SET_GRADE = 'cards/SET-GRADE'
 const SET_CARD_ID = 'cards/SET-CARD-ID'
 const SORT_CARDS = 'cards/SORT-CARD'
+const SET_PAGE_CARD = 'cards/SET-PAGE-CARD'
+const SET_PAGE_COUNT_CARD = 'cards/SET-PAGE-COUNT-CARD'
 
 const initialState: InitialStateType = {
     cards: [],
-    cardsTotalCount: 3,
+    cardsTotalCount: 5,
     maxGrade: 0,
     minGrade: 0,
     page: 1,
@@ -38,6 +40,9 @@ export const packCardsReducer = (state: InitialStateType = initialState, action:
         case "cards/SET-CARD-ID": {
             return {...state, randomCardId: action.card_id}
         }
+        case "cards/SET-PAGE-CARD": {
+            return {...state, page: action.page}
+        }
         case "cards/SET-GRADE": {
             return {
                 ...state,
@@ -46,6 +51,9 @@ export const packCardsReducer = (state: InitialStateType = initialState, action:
                     grade: action.payload.grade
                 } : card)
             }
+        }
+        case "cards/SET-PAGE-COUNT-CARD": {
+            return {...state, pageCount: action.pageCount}
         }
         case 'cards/SORT-CARD': {
             return {...state, sortCards: action.sort}
@@ -59,6 +67,8 @@ export const packCardsReducer = (state: InitialStateType = initialState, action:
 export const setCardsAC = (state: InitialStateType) => ({type: SET_USER, state} as const)
 export const setPackAC = (cardsPack_id: string) => ({type: SET_CARD_PACK_ID, cardsPack_id} as const)
 export const setIdCardAC = (card_id: string) => ({type: SET_CARD_ID, card_id} as const)
+export const setPageCardAC = (page: number) => ({type: SET_PAGE_CARD, page} as const)
+export const setPageCountCardAC = (pageCount: number) => ({type: SET_PAGE_COUNT_CARD, pageCount} as const)
 export const sortingCardsAC = (sort: string) => {
     return {
         type: SORT_CARDS,
@@ -199,3 +209,5 @@ export type CardsActionsType =
     | ReturnType<typeof setGradeAC>
     | ReturnType<typeof setIdCardAC>
     | ReturnType<typeof sortingCardsAC>
+    | ReturnType<typeof setPageCardAC>
+    | ReturnType<typeof setPageCountCardAC>

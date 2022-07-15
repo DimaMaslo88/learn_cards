@@ -15,7 +15,7 @@ const initialState = {
         updated: '',
     }],
 
-    cardPacksTotalCount: 20,
+    cardPacksTotalCount: 100,
     // количество колод
     maxCardsCount: 0,
     minCardsCount: 0,
@@ -199,6 +199,7 @@ export const FetchCardsTC = (): AppThunk =>
                     dispatch(setCardsAC(res.data.cardPacks))
                     dispatch(setPageCountAC(res.data.pageCount))
                     dispatch(setPageAC(res.data.page))
+
                 })
                 .catch((err) => {
                     handleServerError(err, dispatch)

@@ -1,3 +1,10 @@
+.cards{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+
 .cardsListContainer{
     display: flex;
     justify-content: left;

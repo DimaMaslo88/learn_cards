@@ -3,10 +3,13 @@ import {useSelector} from "react-redux";
 import React, {useEffect} from "react";
 import {Navigate, useParams} from "react-router-dom";
 import style from "../cardsListPage/CardsList.module.css";
-import {CardType, SetCardsTC, setPackAC} from "../../reducers/packCards-reducer";
+import {CardType, SetCardsTC, setPackAC, setPageCardAC} from "../../reducers/packCards-reducer";
 import Button from "../../common/button/Button";
 import {setModalWindowAC} from "../../reducers/modal-reducer";
 import s from '../../common/button/Button.module.css'
+import Pagination from "../../common/pagination/Pagination";
+import BasicPagination from "../../common/pagination/Pagination";
+import {setPageCountAC} from "../../reducers/cards-reducer";
 
 const CardsList = () => {
     const dispatch = useAppDispatch()
@@ -16,8 +19,15 @@ const CardsList = () => {
     const pageCount = useSelector<AppStateType, number>(state => state.cards.pageCount)
     const sort = useSelector<AppStateType, string>(state => state.cards.sortCards)
     const userId = useSelector<AppStateType, string>(state => state.cardPacks.params.user_id)
-    const onClickHandler = () => {
-        dispatch(SetCardsTC())
+    const page=useSelector<AppStateType,number>(state=>state.cards.page)
+    const totalCount=useSelector<AppStateType,number>(state=>state.cards.cardsTotalCount)
+
+
+    const setCardPage = (page:number) => {
+        dispatch(setPageCardAC(page))
+    }
+    const setCardCountPage = (page:number) => {
+        dispatch(setPageCountAC(page))
     }
 
     useEffect(() => {
@@ -46,7 +56,7 @@ const CardsList = () => {
 
     return (
 
-        <div>
+        <div className={style.cards}>
 
             {cards.map(({_id, answer, question, grade, updated}: CardType) => {
 
@@ -57,20 +67,20 @@ const CardsList = () => {
                     <div style={{width: '250px'}}>{grade}</div>
                     <div style={{width: '250px'}}>{updated}</div>
                     <div>
-                        <Button disabled={!userId} className={s.red} onClick={() => openModalWindowDeleteLearningCard(_id)}>Delete</Button>
+                        <Button disabled={!userId} className={s.red}
+                                onClick={() => openModalWindowDeleteLearningCard(_id)}>Delete</Button>
                         <Button onClick={() => openModalWindowUpdateLearningCard(_id, question)}>Update</Button>
                     </div>
                 </div>
 
             })}
             <div className={style.pageCount}>
-                {currentPage.map((page, index) => {
-                    return <span key={index}
-                                 onClick={onClickHandler}
-                    >
-{page}
-                </span>
-                })}
+               <BasicPagination
+                   packPage={page}
+                   pageCount={pageCount}
+                   callback={setCardPage}
+                   setPageCountCallback={setCardCountPage}
+                   totalCount={totalCount}/>
 
             </div>
         </div>

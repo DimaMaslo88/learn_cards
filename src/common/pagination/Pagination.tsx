@@ -10,13 +10,7 @@ type PaginationType = {
     totalCount: number
 }
 const BasicPagination = ({packPage, pageCount, callback, totalCount, setPageCountCallback}: PaginationType) => {
-    // let currentPage = []
-    // for (let i = 1; i <= pageCount; i++) {
-    //     currentPage.push(i)
-    // }
-    //
-    // const [startPage, setStartPage] = useState<number>(packPage)
-    // const [rowsPerPage, setRowsPerPage] = useState<number>(totalCount);
+
     const onPageChange = (e: MouseEvent<HTMLButtonElement> | null, newPage: number) => {
         callback(newPage)
     }
@@ -29,8 +23,8 @@ const BasicPagination = ({packPage, pageCount, callback, totalCount, setPageCoun
     return (
 
 
-        <TablePagination component="div"
-                         count={100}
+        <TablePagination
+                         count={totalCount}
                          page={packPage}
                          onPageChange={onPageChange}
                          rowsPerPage={pageCount}
@@ -40,21 +34,7 @@ const BasicPagination = ({packPage, pageCount, callback, totalCount, setPageCoun
 
 
 
-        // {/*<div className={style.pageCount}>*/}
-        // {/*    {currentPage.map((page,index) => {*/}
-        //
-        // {/*        return <span key={index}*/}
-        //
-        // {/*            className={packPage === page ? style.pages : ''}*/}
-        // {/*            onClick={() => callback(page)}*/}
-        // {/*        >*/}
-        // {/*                {page}*/}
-        // {/*           */}
-        // {/*    </span>*/}
-        //
-        //
-        // {/*    })}*/}
-        // {/*</div>*/}
+
 
     );
 };

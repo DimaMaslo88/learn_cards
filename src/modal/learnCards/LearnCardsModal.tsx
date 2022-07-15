@@ -47,7 +47,7 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
         updated: '',
         _id: '',
     })
-
+    console.log(name)
     useEffect(() => {
 
         if (first) {
