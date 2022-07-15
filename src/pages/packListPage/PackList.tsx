@@ -1,15 +1,14 @@
 import React, {useEffect} from 'react';
 import {useSelector} from "react-redux";
-import {addCardsAC, FetchCardsTC, setPageAC} from "../../reducers/cards-reducer";
+import {FetchCardsTC, setPageAC, setPageCountAC} from "../../reducers/cards-reducer";
 import {CardPacksType} from "../../API/cards-api";
 import {AppStateType, useAppDispatch} from "../../reducers/store";
 import {Navigate, useNavigate} from "react-router-dom";
 import style from './PackList.module.css'
-
 import Button from "../../common/button/Button";
-import Pagination from "./pagination/Pagination";
 import {setModalWindowAC} from "../../reducers/modal-reducer";
 import s from "../../common/button/Button.module.css";
+import BasicPagination from './pagination/Pagination';
 
 
 const PackList = () => {
@@ -29,6 +28,9 @@ const PackList = () => {
 
     const setNewPageHandler = (page: number) => {
         dispatch(setPageAC(page))
+    }
+    const setNewPageCountHandler = (page: number) => {
+        dispatch(setPageCountAC(page))
     }
 
 
@@ -62,7 +64,7 @@ const PackList = () => {
 
         <div>
 
-
+<div>
             {cards.map(card => {
                 const setChangePageToCard = (id: string) => {
                     navigate(`${card._id}`)
@@ -75,18 +77,25 @@ const PackList = () => {
                     <div style={{width: '250px'}}>{card.cardsCount}</div>
                     <div style={{width: '250px'}}>{card.updated}</div>
 
-                    <Button disabled={!userId} className={s.red} onClick={() => openModelWindowHandler(card._id)}>Del</Button>
+                    <Button disabled={!userId} className={s.red}
+                            onClick={() => openModelWindowHandler(card._id)}>Del</Button>
                     <Button onClick={() => openUpdateModelWindowHandler(card._id)}>Update</Button>
                     <Button onClick={() => openLearnModelWindowHandler(card._id)}>Learn</Button>
                 </div>
 
             })}
+</div>
+            <div className={style.pagination}>
 
-            <Pagination packPage={packPage}
-                        pageCount={pageCount}
-                        callback={setNewPageHandler}
-                        totalCount={totalCount}
-            />
+                <BasicPagination
+
+                    packPage={packPage}
+                    pageCount={pageCount}
+                    callback={setNewPageHandler}
+                    setPageCountCallback={setNewPageCountHandler}
+                    totalCount={totalCount}
+                />
+            </div>
 
 
         </div>

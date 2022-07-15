@@ -77,7 +77,7 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Gen
             return {...state, pageCount: action.pageCount}
         }
         case "pack/SET-PAGE": {
-            return {...state, page: action.page}
+            return {...state, page:action.page}
 
         }
         case "pack/ID-FILTER-PACK": {
@@ -198,6 +198,7 @@ export const FetchCardsTC = (): AppThunk =>
                 .then((res) => {
                     dispatch(setCardsAC(res.data.cardPacks))
                     dispatch(setPageCountAC(res.data.pageCount))
+                    dispatch(setPageAC(res.data.page))
                 })
                 .catch((err) => {
                     handleServerError(err, dispatch)

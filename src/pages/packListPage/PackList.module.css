@@ -10,3 +10,7 @@
 .pages{
     font-weight: bold;
 }
+.pagination{
+    display: flex;
+    justify-content: center;
+}
