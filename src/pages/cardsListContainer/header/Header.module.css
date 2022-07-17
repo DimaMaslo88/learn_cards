@@ -1,0 +1,28 @@
+.cards{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+
+.cardsListContainer{
+    display: flex;
+    justify-content: left;
+    width: 100%;
+    background: linear-gradient(45deg, #cb1111b3, transparent);
+    border-radius: 5px
+
+}
+.question{
+    width: 250px;
+
+}
+.answer{
+    width: 250px;
+}
+.grade{
+    width: 250px;
+}
+.update{
+    width: 250px;
+}

@@ -7,7 +7,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {AppStateType, useAppDispatch} from "../../reducers/store";
 import {Navigate,NavLink} from "react-router-dom";
 
-import {ErrorSnackbar} from "../ErrorSnackBar/errorSnackBar";
+
 
 type FormikErrorType = {
     email?: string
@@ -39,9 +39,7 @@ const Signup = () => {
             } else if (values.password.length < 4) {
                 errors.email = 'To small password';
             }
-            // if(values.confirmPassword !== values.password){
-            //     errors.confirmPassword="Password not a correct"
-            // }
+
             return errors;
 
         },
@@ -50,8 +48,8 @@ const Signup = () => {
 
         },
     })
-    if (isRegisterIn) {
-        return <Navigate to={'/login'}/>
+    if ( isRegisterIn ) {
+        return <Navigate to={'/profile'}/>
     }
     return <form onSubmit={formik.handleSubmit}>
         <h2>Registration</h2>

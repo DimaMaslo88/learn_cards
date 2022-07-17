@@ -7,6 +7,8 @@ import {InitializeTC} from "./reducers/auth-reducer";
 import CircularProgress from '@mui/material/CircularProgress'
 import {AppStateType, useAppDispatch} from "./reducers/store";
 import {ErrorSnackbar} from "./pages/ErrorSnackBar/errorSnackBar";
+import {Navigate} from "react-router-dom";
+import Signup from "./pages/p2-signup/Signup";
 
 
 function App() {

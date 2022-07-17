@@ -6,7 +6,8 @@ import Button from "../../common/button/Button";
 import {setModalWindowAC} from "../../reducers/modal-reducer";
 import { useAppDispatch} from "../../reducers/store";
 import {ModalWindow} from "../../modal/Modal";
-
+import {ArrowBack} from "@material-ui/icons";
+import style from './CardsListContainer.module.scss'
 
 const CardsListContainer = () => {
     const dispatch = useAppDispatch()
@@ -26,7 +27,7 @@ const CardsListContainer = () => {
         <div>
             <h2>Cards</h2>
 
-            <Button onClick={returnPack} >Back</Button>
+            <Button onClick={returnPack} > <ArrowBack /></Button>
             <Button onClick={openModelWindowAddLearnCardHandler}>Add Card</Button>
 
             <div>

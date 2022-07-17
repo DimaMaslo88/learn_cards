@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import style from '../CardsListContainer.module.css'
+import style from './Header.module.css'
 
 import {useAppDispatch} from "../../../reducers/store";
 import {sortingCardsAC} from "../../../reducers/packCards-reducer";
