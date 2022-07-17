@@ -54,12 +54,12 @@ const Profile = () => {
 
 
         Email: <Input
-        placeholder={'email'}
+        placeholder={'email'} disabled={true} className={style.disabled}
         {...formik.getFieldProps("email")}
 
 
     />
-            <div>
+            <div className={style.button}>
 
                 <Button>LogOut</Button>
 

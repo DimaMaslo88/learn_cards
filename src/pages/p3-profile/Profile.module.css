@@ -7,3 +7,10 @@
     justify-content: center;
     flex-direction: column;
 }
+.disabled{
+    opacity: 0.4;
+}
+.button{
+    display: flex;
+    justify-content: center;
+}

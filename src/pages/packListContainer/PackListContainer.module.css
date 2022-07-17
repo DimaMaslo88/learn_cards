@@ -2,7 +2,8 @@
     display: flex;
     justify-content: left;
     width: 100%;
-   background-color: bisque;
+    background: linear-gradient(45deg, #cb1111b3, transparent);
+    border-radius: 5px
 
 }
 .name{
