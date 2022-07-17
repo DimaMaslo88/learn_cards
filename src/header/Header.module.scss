@@ -1,0 +1,27 @@
+.container {
+    height: 60px;
+    display: flex;
+   justify-content: center;
+    width: 100%;
+    background: linear-gradient(45deg, #24ff48, transparent);
+    .pages {
+        width: 500px;
+        margin-left: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .item {
+            color: #0015ff;
+            font-size: large;
+            text-decoration: none;
+        }
+        .active {
+            color: rgb(255, 106, 0);
+            text-decoration: none;
+            font-size: large;
+        }
+    }
+}
+
+
+

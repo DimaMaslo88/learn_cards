@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from "react-router-dom";
-import s from './Header.module.css'
+import s from './Header.module.scss'
 import {PATH} from "../pages/Pages";
 
 const Header = () => {
@@ -16,8 +16,8 @@ const Header = () => {
                 {/*         className={({isActive}) => (isActive ? s.active : s.item)}>Reset</NavLink>*/}
                 <NavLink to={PATH.packList}
                          className={({isActive}) => (isActive ? s.active : s.item)}>PackList</NavLink>
-                <NavLink to={PATH.error} className={({isActive}) => (isActive ? s.active : s.item)}>404</NavLink>
-                <NavLink to={PATH.test} className={({isActive}) => (isActive ? s.active : s.item)}>Test</NavLink>
+                {/*<NavLink to={PATH.error} className={({isActive}) => (isActive ? s.active : s.item)}>404</NavLink>*/}
+                {/*<NavLink to={PATH.test} className={({isActive}) => (isActive ? s.active : s.item)}>Test</NavLink>*/}
             </div>
         </div>
     );
