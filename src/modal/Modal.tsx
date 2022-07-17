@@ -34,11 +34,10 @@ export const ModalWindow = () => {
     const nameComponent = useSelector<AppStateType, ComponentType>(state => state.modals.nameComponent)
     const status = useSelector<AppStateType, boolean>(state => state.app.status)
     const currentName = useSelector<AppStateType, string>(state => state.cardPacks.params.packName)
-    // const id=useSelector<AppStateType,string>(state=>state.cardPacks.params.user_id)
 
 
     const handleModalClose = () => {
-        dispatch(setModalWindowAC(false, 'add', '',''))
+        dispatch(setModalWindowAC(false, 'add', '', ''))
     };
     const addNewPack = (packName: string) => {
         dispatch(CreateCardsTC(packName))
@@ -58,8 +57,8 @@ export const ModalWindow = () => {
     const deleteLearningCardsHandler = (id: string) => {
         dispatch(DeleteLearningCardsTC(id))
     }
-    const updateLearningCardsHandler=(_id:string,question:string)=>{
-        dispatch(UpdateLearningCardsTC(_id,question))
+    const updateLearningCardsHandler = (_id: string, question: string) => {
+        dispatch(UpdateLearningCardsTC(_id, question))
     }
     // const learningCardsHandler=(_id:string,name:string)=>{
     //     dispatch(UpdateLearningCardsTC(_id,question))
@@ -108,16 +107,15 @@ export const ModalWindow = () => {
 
                         />}
                         {nameComponent === 'updateCard' && <UpdateLearningCardsModal
-                                                                title={'Make Your Changes'}
-                                                                updateLearningCards={updateLearningCardsHandler}
-                                                                closeModal={handleModalClose}
-
+                            title={'Make Your Changes'}
+                            updateLearningCards={updateLearningCardsHandler}
+                            closeModal={handleModalClose}
 
 
                         />}
                         {nameComponent === 'learnCards' && <LearnCardsModal
                             closeModal={handleModalClose}
-                            />}
+                        />}
                     </Box>
                 </Fade>
             </Modal>

@@ -24,7 +24,7 @@ const PackList = () => {
     const packName = useSelector<AppStateType, string>(state => state.cardPacks.params.packName)
 
 
-    console.log("sort", sort)
+
 
     const setNewPageHandler = (page: number) => {
         dispatch(setPageAC(page))

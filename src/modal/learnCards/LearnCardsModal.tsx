@@ -8,6 +8,7 @@ import style from './LearnCards.module.css'
 
 import {Grades} from "../../components/Grades";
 import {addCardsAC} from "../../reducers/cards-reducer";
+import {CardPacksType} from "../../API/cards-api";
 
 
 type LearnCardsModalType = {
@@ -47,7 +48,16 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
         updated: '',
         _id: '',
     })
-    console.log(name)
+    const [pack,setPack]=useState< CardPacksType>({
+
+        _id: '',
+        user_id: '',
+        name: '',
+        cardsCount: 0,
+        created: '',
+        updated: '',
+    })
+
     useEffect(() => {
 
         if (first) {
@@ -58,10 +68,10 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
             const card = getCard(cards)
             setCard(card)
             dispatch(setIdCardAC(card._id))
-            dispatch(addCardsAC(name))
+
         }
 
-    }, [cards, first,name])
+    }, [cards, first])
 
     const nextHandler = () => {
         setShow(false)
@@ -76,7 +86,7 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
     return (
 
         <div>
-            <h4>Learn Card:{name}</h4>
+            <h4>Learn Card:{pack.name}</h4>
             <h5>Question:</h5> {card.question}
             <div className={style.button}>
                 {!show && <Button onClick={() => {

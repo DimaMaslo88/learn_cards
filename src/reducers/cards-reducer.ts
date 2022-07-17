@@ -27,7 +27,7 @@ const initialState = {
         sortPacks: '',
         pageCount: 1,
         packName: ''
-    },
+    }
 
 }
 export type InitialStateType = {
@@ -77,7 +77,7 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Gen
             return {...state, pageCount: action.pageCount}
         }
         case "pack/SET-PAGE": {
-            return {...state, page:action.page}
+            return {...state, page: action.page}
 
         }
         case "pack/ID-FILTER-PACK": {
@@ -89,7 +89,7 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Gen
         }
         case "pack/ADD-CARDS": {
 
-            return {...state, params: {...state.params,packName:action.name}}
+            return {...state, params: {...state.params, packName: action.name}}
         }
         case "pack/DELETE-PACK": {
 
@@ -200,6 +200,7 @@ export const FetchCardsTC = (): AppThunk =>
                     dispatch(setPageCountAC(res.data.pageCount))
                     dispatch(setPageAC(res.data.page))
 
+
                 })
                 .catch((err) => {
                     handleServerError(err, dispatch)
@@ -212,21 +213,22 @@ export const FetchCardsTC = (): AppThunk =>
     }
 
 
-export const CreateCardsTC = (packName:string): AppThunk =>
+export const CreateCardsTC = (packName: string): AppThunk =>
     (dispatch, getState: () => AppStateType) => {
         dispatch(setStatusAppAC(true))
         // let name = getState().cardPacks.params.packName
         cardsApi.packCreate(packName)
             .then((res) => {
-
+                dispatch(addCardsAC(packName))
                 dispatch(FetchCardsTC())
+
             })
             .catch((err) => {
                 handleServerError(err, dispatch)
             })
             .finally(() => {
                 dispatch(setStatusAppAC(false))
-                dispatch(setModalWindowAC(false, 'add','',''))
+                dispatch(setModalWindowAC(false, 'add', '', ''))
             })
 
     }
@@ -243,12 +245,12 @@ export const DeletePackTC = (id: string): AppThunk => (dispatch) => {
         })
         .finally(() => {
             dispatch(setStatusAppAC(false))
-            dispatch(setModalWindowAC(false, 'delete','',''))
+            dispatch(setModalWindowAC(false, 'delete', '', ''))
         })
 
 }
 
-export const UpdatePackTC = (id: string,name:string): AppThunk => (dispatch) => {
+export const UpdatePackTC = (id: string, name: string): AppThunk => (dispatch) => {
     dispatch(setStatusAppAC(true))
 
     cardsApi.updatePack(id, name)
@@ -261,7 +263,7 @@ export const UpdatePackTC = (id: string,name:string): AppThunk => (dispatch) => 
         })
         .finally(() => {
             dispatch(setStatusAppAC(false))
-            dispatch(setModalWindowAC(false, 'update','',''))
+            dispatch(setModalWindowAC(false, 'update', '', ''))
         })
 
 }
