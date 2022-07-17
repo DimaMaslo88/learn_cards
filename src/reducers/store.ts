@@ -4,7 +4,7 @@ import {
     authReducer, ForgotPasswordType,
     SetInitializeType,
     SetLoggedInType,
-    SetLoginDataACType,
+    SetLoginDataACType, SetNewPasswordType,
     SetRegisterInType,
     UpdateUserParamsType
 } from "./auth-reducer";
@@ -59,6 +59,7 @@ export type AppActionsType = SetLoggedInType
     | SearchByNameType
     | SetModalWindowType
 |CardsActionsType
+|SetNewPasswordType
 export type AppStateType = ReturnType<typeof rootReducer>
 // export type AppActionsType
 // @ts-ignore

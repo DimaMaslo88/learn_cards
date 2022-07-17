@@ -10,8 +10,8 @@ const Header = () => {
                 <NavLink to={PATH.login} className={({isActive}) => (isActive ? s.active : s.item)}>Log in</NavLink>
                 <NavLink to={PATH.signup} className={({isActive}) => (isActive ? s.active : s.item)}>Sign up</NavLink>
                 <NavLink to={PATH.profile} className={({isActive}) => (isActive ? s.active : s.item)}>Profile</NavLink>
-                <NavLink to={PATH.newPassword}
-                         className={({isActive}) => (isActive ? s.active : s.item)}>Password</NavLink>
+                {/*<NavLink to={PATH.newPassword}*/}
+                {/*         className={({isActive}) => (isActive ? s.active : s.item)}>Password</NavLink>*/}
                 <NavLink to={PATH.restorePassword}
                          className={({isActive}) => (isActive ? s.active : s.item)}>Reset</NavLink>
                 <NavLink to={PATH.packList}

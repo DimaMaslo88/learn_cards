@@ -33,9 +33,7 @@ export type UpdateMeType = {
     name: string
     avatar: string
 }
-// export type RedactMeResponseType={
-//     updatedUser:ResponseType
-// }
+
 
 export type ForgotLoginType = {
     email: string
@@ -44,8 +42,8 @@ export type ForgotLoginType = {
 }
 
 export type NewPasswordType = {
-    password: string
-    resetPasswordToken: string
+    password?: string
+    resetPasswordToken?: string
 }
 
 export type ResponseDeleteType = {

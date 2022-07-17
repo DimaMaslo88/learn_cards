@@ -7,8 +7,7 @@ import {useAppDispatch} from "../../reducers/store";
 
 type FormikErrorType = {
     email?: string
-    // password?: string
-    // rememberMe?: boolean
+
 }
 
 const NewPassword = () => {
@@ -41,7 +40,7 @@ const NewPassword = () => {
         <div>
             <h2>New Password</h2>
             <Input placeholder={'email'}
-                   // newPassword
+
                    {...formik.getFieldProps("email")}
             />
         </div>
@@ -49,7 +48,7 @@ const NewPassword = () => {
         formik.errors.email &&
         <div style={{color: 'red'}}>{formik.errors.email}</div>}
         <p>Enter your Email.</p>
-           <p> On to your email will be sent letter to reset your password</p>
+           <p>To your email will be sent letter to reset your password</p>
         <Button>
             Send Letter
         </Button>
