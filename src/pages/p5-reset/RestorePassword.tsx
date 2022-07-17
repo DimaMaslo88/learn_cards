@@ -47,9 +47,9 @@ const RestorePassword = () => {
         <div>
 
             <h2>Restore your password</h2>
-            <Input placeholder={'Enter your Email'}
+            <Input placeholder={'Enter your Password'}
                 // newPassword
-                   {...formik.getFieldProps("email")}
+                   {...formik.getFieldProps("password")}
 
             />
         </div>

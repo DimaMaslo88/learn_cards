@@ -4,6 +4,7 @@ import {ResetPasswordTC} from "../../reducers/auth-reducer";
 import Input from "../../common/input/Input";
 import Button from "../../common/button/Button";
 import {useAppDispatch} from "../../reducers/store";
+import {useNavigate} from "react-router-dom";
 
 type FormikErrorType = {
     email?: string
@@ -13,7 +14,10 @@ type FormikErrorType = {
 const NewPassword = () => {
 
     const dispatch = useAppDispatch()
-
+    const navigate = useNavigate()
+    const restorePasswordHandler=()=>{
+        navigate('/set-new-password')
+    }
     const formik = useFormik({
         initialValues: {
             email: '',
@@ -48,8 +52,8 @@ const NewPassword = () => {
         formik.errors.email &&
         <div style={{color: 'red'}}>{formik.errors.email}</div>}
         <p>Enter your Email.</p>
-           <p>To your email will be sent letter to reset your password</p>
-        <Button>
+        <p>To your email will be sent letter to reset your password</p>
+        <Button >
             Send Letter
         </Button>
     </form>
