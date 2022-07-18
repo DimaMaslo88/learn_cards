@@ -69,7 +69,8 @@ const CardsList = () => {
                     <div>
                         <Button disabled={!userId} className={s.red}
                                 onClick={() => openModalWindowDeleteLearningCard(_id)}>Delete</Button>
-                        <Button onClick={() => openModalWindowUpdateLearningCard(_id, question)}>Update</Button>
+                        <Button disabled={!userId} className={s.red}
+                            onClick={() => openModalWindowUpdateLearningCard(_id, question)}>Update</Button>
                     </div>
                 </div>
 

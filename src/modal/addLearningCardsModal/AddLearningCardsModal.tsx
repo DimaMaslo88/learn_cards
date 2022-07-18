@@ -27,21 +27,21 @@ export const AddLearningCardsModal = ({title, addNewLearningCard, closeModal}: A
             <h4 className={style.title}>{title}</h4>
             <div className={style.inputForm}>
                 <div>
-                    <input placeholder='question'
+                    <input className={style.input}
+                           placeholder='question'
                            value={question}
                            onChange={onChangeQuestionHandler}/>
                 </div>
                 <div>
                     <input
-
+                        className={style.input}
                         placeholder='answer'
                         value={answer}
                         onChange={onChangeAnswerHandler}/>
                 </div>
             </div>
-            <div>
+            <div className={style.button}>
                 <Button onClick={() => addNewLearningCard(question, answer, packId)}
-
                 >Save</Button>
                 <Button onClick={closeModal}>Cancel</Button>
             </div>

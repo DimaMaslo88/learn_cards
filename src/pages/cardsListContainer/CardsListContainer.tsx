@@ -12,7 +12,7 @@ import style from './CardsListContainer.module.scss'
 const CardsListContainer = () => {
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
-    // const userId=useSelector<AppStateType,string>(state=>state.auth.profile._id)
+
 
     const returnPack=()=>{
          navigate(`/pack-list`)
