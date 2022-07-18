@@ -7,6 +7,10 @@
     justify-content: center;
     flex-direction: column;
 }
+.avatar{
+    display: flex;
+    justify-content: center;
+}
 .disabled{
     opacity: 0.4;
 }

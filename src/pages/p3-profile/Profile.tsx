@@ -7,6 +7,7 @@ import Button from "../../common/button/Button";
 import {AppStateType, useAppDispatch} from "../../reducers/store";
 import {Navigate} from "react-router-dom";
 import style from "./Profile.module.css"
+import {InputTypeFilesAvatar} from "../../components/inputTypeFileAvatar/InputTypeFilesAvatar";
 
 const Profile = () => {
     const dispatch = useAppDispatch()
@@ -44,8 +45,9 @@ const Profile = () => {
 
             <h2>My Profile</h2>
             <div className={style.avatar}>
-                <img
-                    src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoKS48ilmDRBg8dQUfQLAuHJolMtiVxpnzVT8tRbTxdUuSQDmVMr5NRrn_pV0kgyqr7cU&usqp=CAU"}/>
+                <InputTypeFilesAvatar/>
+              {/*<img*/}
+              {/*     src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoKS48ilmDRBg8dQUfQLAuHJolMtiVxpnzVT8tRbTxdUuSQDmVMr5NRrn_pV0kgyqr7cU&usqp=CAU"}/>*/}
             </div>
             NickName: <Input placeholder={'Nickname'}
                              {...formik.getFieldProps("nickName")}

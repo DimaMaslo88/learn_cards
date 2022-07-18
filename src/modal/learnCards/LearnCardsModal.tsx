@@ -7,8 +7,7 @@ import {CardType, SetCardsTC, setIdCardAC, setPackAC} from "../../reducers/packC
 import style from './LearnCards.module.css'
 
 import {Grades} from "../../components/Grades";
-import {addCardsAC} from "../../reducers/cards-reducer";
-import {CardPacksType} from "../../API/cards-api";
+
 
 
 type LearnCardsModalType = {
@@ -48,15 +47,7 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
         updated: '',
         _id: '',
     })
-    const [pack,setPack]=useState< CardPacksType>({
 
-        _id: '',
-        user_id: '',
-        name: '',
-        cardsCount: 0,
-        created: '',
-        updated: '',
-    })
 
     useEffect(() => {
 
@@ -86,7 +77,7 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
     return (
 
         <div>
-            <h4>Learn Card:{pack.name}</h4>
+            <h4>Learn Card:{name}</h4>
             <h5>Question:</h5> {card.question}
             <div className={style.button}>
                 {!show && <Button onClick={() => {
@@ -99,9 +90,9 @@ const LearnCardsModal = ({closeModal}: LearnCardsModalType) => {
                         <div>
                             <h5>Answer:</h5> {card.answer}
                         </div>
-<p>
+<div>
                         <Grades />
-</p>
+</div>
                         <Button onClick={nextHandler}>Next</Button>
                     </>
                 )}

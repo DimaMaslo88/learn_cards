@@ -1,6 +1,7 @@
 import React, {ChangeEvent, useState} from 'react';
 import Button from "../../common/button/Button";
 import style from "./AddModal.module.css"
+import {InputTypeFiles} from "../../components/inputTypeFiles/InputTypeFiles";
 
 type AddModalPropsType = {
     closeModal: () => void
@@ -30,6 +31,9 @@ const AddModal = ({isLoading, addNewPack, packName, closeModal}: AddModalPropsTy
                        onChange={onChangeNameHandler}
                 />
                 </div>
+            <div className={style.inputType}>
+                <InputTypeFiles/>
+            </div>
                 <div className={style.buttons}>
                 <Button onClick={()=>addNewPack(value)}
                         disabled={disabled}

@@ -24,16 +24,12 @@ const BasicPagination = ({packPage, pageCount, callback, totalCount, setPageCoun
 
 
         <TablePagination
-                         count={totalCount}
-                         page={packPage}
-                         onPageChange={onPageChange}
-                         rowsPerPage={pageCount}
-                         onRowsPerPageChange={handleChangeRowsPerPage}
+            count={totalCount}
+            page={packPage}
+            onPageChange={onPageChange}
+            rowsPerPage={pageCount}
+            onRowsPerPageChange={handleChangeRowsPerPage}
         />
-
-
-
-
 
 
     );
