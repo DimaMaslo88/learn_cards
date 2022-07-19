@@ -13,6 +13,7 @@ const initialState = {
         cardsCount: 0,
         created: '',
         updated: '',
+        //cover:"no cover"
     }],
 
     cardPacksTotalCount: 100,
@@ -67,6 +68,7 @@ export type GeneralActionType = SetCardsType
     | UpdatePackType
     | SortingPackType
     | SearchByNameType
+    | SetCoverType
 
 export const cardsReducer = (state: InitialStateType = initialState, action: GeneralActionType): InitialStateType => {
     switch (action.type) {
@@ -104,6 +106,9 @@ export const cardsReducer = (state: InitialStateType = initialState, action: Gen
         case "pack/SEARCH-BY-NAME": {
             return {...state, params: {...state.params, packName: action.packName}}
         }
+        case "packs/SET-COVER":{
+            return {...state,cardPacks:state.cardPacks.map(m=>m._id===action.id?{...m,cover:action.cover}:m)}
+        }
 
         default:
             return state
@@ -116,6 +121,15 @@ export const setCardsAC = (cardPacks: CardPacksType[]) => { //отображае
     return {
         type: "packs/SET-CARDS",
         cardPacks
+    } as const
+
+}
+export type SetCoverType = ReturnType<typeof setCoverAC>
+export const setCoverAC = (id:string,cover: string) => { // обложка карточек !!!!!!!!!!
+    return {
+        type: "packs/SET-COVER",
+        id,
+        cover
     } as const
 
 }

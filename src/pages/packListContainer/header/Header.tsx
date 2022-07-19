@@ -45,6 +45,8 @@ const HeaderPack = () => {
             </div>
 
             <div className={style.PackListContainer}>
+                {/*<h4 className={style.cover}*/}
+                {/*>Cover</h4>*/}
                 <h4 className={style.name}
                 >Name
                     {push && < ArrowDownward onClick={() => sortHandlerName('0name')}/>}

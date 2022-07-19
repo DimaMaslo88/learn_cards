@@ -15,7 +15,7 @@ import {
     cardsReducer, DeletePackType,
     IdFilterPackType, SearchByNameType,
 
-    SetCardsType,
+    SetCardsType, SetCoverType,
     SetPageCountType,
     SetPageType, SortingPackType, UpdatePackType
 } from "./cards-reducer";
@@ -29,7 +29,7 @@ const rootReducer = combineReducers({
     app: appReducer,
     cardPacks: cardsReducer,
     cards: packCardsReducer,
-    modals:modalReducer
+    modals: modalReducer
 })
 
 export const store = createStore(rootReducer, applyMiddleware(thunk))
@@ -58,8 +58,9 @@ export type AppActionsType = SetLoggedInType
     | SortingPackType
     | SearchByNameType
     | SetModalWindowType
-|CardsActionsType
-|SetNewPasswordType
+    | CardsActionsType
+    | SetNewPasswordType
+    | SetCoverType
 export type AppStateType = ReturnType<typeof rootReducer>
 // export type AppActionsType
 // @ts-ignore

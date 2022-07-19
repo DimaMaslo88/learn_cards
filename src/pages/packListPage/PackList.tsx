@@ -63,6 +63,11 @@ const PackList = () => {
     return (
 
         <div>
+            {/*<div>*/}
+            {/*    {cards.map((card)=>{*/}
+            {/*        return <div>{card.}</div>*/}
+            {/*    })}*/}
+            {/*</div>*/}
 
 <div>
             {cards.map(card => {
@@ -71,6 +76,7 @@ const PackList = () => {
                 }
 
                 return <div key={card._id} className={style.packList}>
+
                     <a href={`learn_cards#/pack-list/${card._id}`}>
                         <div style={{width: '250px'}}>{card.name}</div>
                     </a>

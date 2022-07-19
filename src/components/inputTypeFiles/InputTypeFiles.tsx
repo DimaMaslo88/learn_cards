@@ -34,11 +34,7 @@ export const InputTypeFiles = () => {
     }
     return (
         <div>
-            {/*<Stack direction="row" spacing={2} >*/}
-            {/*    <Avatar style={{color:'red'}}>*/}
-            {/*        <Folder  onClick={selectFileHandler}/>*/}
-            {/*    </Avatar>*/}
-            {/*</Stack>*/}
+
             <Button onClick={selectFileHandler}>Upload File</Button>
 
             <input type={"file"}

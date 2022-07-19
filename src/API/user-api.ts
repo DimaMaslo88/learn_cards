@@ -30,8 +30,8 @@ export const authApi = {
 
 
 export type UpdateMeType = {
-    name: string
-    avatar: string
+    name?: string
+    avatar?: string
 }
 
 

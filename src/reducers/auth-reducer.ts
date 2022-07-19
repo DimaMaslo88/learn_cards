@@ -17,7 +17,7 @@ export type ProfileType = {
     _id: string,
     email: string,
     name: string,
-    avatar?: string,
+    avatar: string,
     publicCardPacksCount: number,
 // количество колод
 
@@ -36,7 +36,9 @@ const initialState = {
     isInitializeIn: false,
     sendSuccess: false,
     sendPassword:false,
-    profile: {} as ProfileType
+    profile: {
+        avatar:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoKS48ilmDRBg8dQUfQLAuHJolMtiVxpnzVT8tRbTxdUuSQDmVMr5NRrn_pV0kgyqr7cU&usqp=CAU"
+    } as ProfileType
 }
 type InitialStateType = {
     isLoggedIn: boolean,
@@ -224,13 +226,17 @@ export const InitializeTC = (): AppThunk => (dispatch) => {
 
 
 export const UpdateUserTC = (data: UpdateMeType): AppThunk => (dispatch) => {
-    dispatch(setStatusAppAC(false))
+    dispatch(setStatusAppAC(true))
     authApi.updateMe(data)
         .then((res) => {
             dispatch(updateUserParamsAC(res.data.name, res.data.avatar))
+
         })
         .catch(err => {
             handleServerError(err, dispatch)
+        })
+        .finally(()=>{
+            dispatch(setStatusAppAC(false))
         })
 }
 

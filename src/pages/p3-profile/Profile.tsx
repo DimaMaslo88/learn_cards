@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
+import React, {ChangeEvent, useEffect} from 'react';
 import {useFormik} from "formik";
-import {InitializeTC, LoginTC, LogOutTC} from "../../reducers/auth-reducer";
+import {InitializeTC, LoginTC, LogOutTC, UpdateUserTC} from "../../reducers/auth-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import Input from "../../common/input/Input";
 import Button from "../../common/button/Button";
@@ -33,7 +33,9 @@ const Profile = () => {
             formik.resetForm()
         },
     })
-
+// const onChangeNameHandler=(e:ChangeEvent<HTMLInputElement>)=>{       // fix!!!!!!!!!!!!
+//         dispatch(UpdateUserTC(e.currentTarget.value))
+// }
 
     if (!isLoggedIn) {
         return <Navigate to={'/login'}/>
@@ -41,26 +43,27 @@ const Profile = () => {
 
     return <form onSubmit={formik.handleSubmit} className={style.form}>
 
-        <div  className={style.profile}>
+        <div className={style.profile}>
 
             <h2>My Profile</h2>
             <div className={style.avatar}>
                 <InputTypeFilesAvatar/>
-              {/*<img*/}
-              {/*     src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoKS48ilmDRBg8dQUfQLAuHJolMtiVxpnzVT8tRbTxdUuSQDmVMr5NRrn_pV0kgyqr7cU&usqp=CAU"}/>*/}
+                {/*<img*/}
+                {/*     src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoKS48ilmDRBg8dQUfQLAuHJolMtiVxpnzVT8tRbTxdUuSQDmVMr5NRrn_pV0kgyqr7cU&usqp=CAU"}/>*/}
             </div>
             NickName: <Input placeholder={'Nickname'}
                              {...formik.getFieldProps("nickName")}
+                             // onChange={onChangeNameHandler}
 
         />
 
 
-        Email: <Input
-        placeholder={'email'} disabled={true} className={style.disabled}
-        {...formik.getFieldProps("email")}
+            Email: <Input
+            placeholder={'email'} disabled={true} className={style.disabled}
+            {...formik.getFieldProps("email")}
 
 
-    />
+        />
             <div className={style.button}>
 
                 <Button>LogOut</Button>

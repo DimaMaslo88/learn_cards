@@ -43,6 +43,8 @@ export type CardPacksType = {
     cardsCount: number
     created: string
     updated: string
+
+
 }
 export type ResponsePackType = {
     cardPacks: CardPacksType[]
