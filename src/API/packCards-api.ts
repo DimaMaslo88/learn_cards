@@ -1,27 +1,27 @@
-import {AxiosResponse} from 'axios'
-import {instance} from './instance';
-import {InitialStateType} from "../reducers/packCards-reducer";
+import { AxiosResponse } from 'axios';
+import { InitialStateType } from 'reducers/packCards-reducer';
+import { instance } from './instance';
 
 export const packCardsAPI = {
-    getCards(params: GetParamsRequestType) {
-        return instance.get<GetParamsRequestType,AxiosResponse<InitialStateType>>('cards/card/', {params})
-    },
-    addCard( question: string,answer: string,cardsPack_id: string) {
-        return instance.post<AxiosResponse<ResponseType>>('cards/card/', {card:{ question,answer,cardsPack_id}});
-    },
-    deleteCard(id:string){
-        return instance.delete<AxiosResponse<ResponseDeleteType>>('cards/card',{params:{id}})
-    },
-    updateCard(_id:string,question:string){
-        return instance.put<AxiosResponse<UpdateResponseType>>('cards/card',{card:{_id,question}})
-    },
-    createGrade(grade:number,card_id:string){
-        return instance.put<ResponseGradeType>('cards/grade',{grade, card_id})
-    }
-}
+  getCards(params: GetParamsRequestType) {
+    return instance.get<GetParamsRequestType, AxiosResponse<InitialStateType>>('cards/card/', { params });
+  },
+  addCard(question: string, answer: string, cardsPackId: string) {
+    return instance.post('cards/card/', { card: { question, answer, cardsPackId } });
+  },
+  deleteCard(id:string) {
+    return instance.delete<AxiosResponse<ResponseDeleteType>>('cards/card', { params: { id } });
+  },
+  updateCard(_id:string, question:string) {
+    return instance.put<AxiosResponse<UpdateResponseType>>('cards/card', { card: { _id, question } });
+  },
+  createGrade(grade:number, cardId:string) {
+    return instance.put<ResponseGradeType>('cards/grade', { grade, cardId });
+  },
+};
 
-//types
- export type GetParamsRequestType = {
+// types
+export type GetParamsRequestType = {
     cardAnswer?: string
     cardQuestion?: string
     cardsPack_id?: string
@@ -31,12 +31,12 @@ export const packCardsAPI = {
     page?: number
     pageCount?: number
 }
- export type ResponseGradeType = {
+export type ResponseGradeType = {
      updatedGrade: {
          _id: string
-         cardsPack_id:  string
-         card_id:  string
-         user_id:  string
+         cardsPack_id: string
+         card_id: string
+         user_id: string
          grade: number
          shots:number
      }

@@ -1,77 +1,85 @@
-import React, {ChangeEvent, useEffect} from 'react';
-import {useFormik} from "formik";
-import {InitializeTC, LoginTC, LogOutTC, UpdateUserTC} from "../../reducers/auth-reducer";
-import {useDispatch, useSelector} from "react-redux";
-import Input from "../../common/input/Input";
-import Button from "../../common/button/Button";
-import {AppStateType, useAppDispatch} from "../../reducers/store";
-import {Navigate} from "react-router-dom";
-import style from "./Profile.module.css"
-import {InputTypeFilesAvatar} from "../../components/inputTypeFileAvatar/InputTypeFilesAvatar";
+import React, { useEffect } from 'react';
+import { useFormik } from 'formik';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import {
+  InitializeTC, LogOutTC,
+} from 'reducers/auth-reducer';
+import { useAppDispatch } from 'reducers/store';
+import {
+  InputTypeFilesAvatar,
+} from 'components/inputTypeFileAvatar/InputTypeFilesAvatar';
+import {
+  selectIsLoggedIn, selectUserAva, selectUserEmail, selectUserName,
+} from 'reducers/selectors/Selectors';
+import Input from '../../common/input/Input';
+import Button from '../../common/button/Button';
+import style from './Profile.module.css';
 
-const Profile = () => {
-    const dispatch = useAppDispatch()
-    const isLoggedIn = useSelector<AppStateType, boolean>(state => state.auth.isLoggedIn)
-    const name = useSelector<AppStateType, string>(state => state.auth.profile.name)
-    const email = useSelector<AppStateType, string>(state => state.auth.profile.email)
-    const ava = useSelector<AppStateType, string | undefined>(state => state.auth.profile.avatar)
-    useEffect(() => {
-        if (isLoggedIn)
-            dispatch(InitializeTC())
-    }, [])
+function Profile():React.ReactElement {
+  const dispatch = useAppDispatch();
+  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const name = useSelector(selectUserName);
+  const email = useSelector(selectUserEmail);
+  const ava = useSelector(selectUserAva);
+  useEffect(() => {
+    if (isLoggedIn) { dispatch(InitializeTC()); }
+  }, []);
 
+  const formik = useFormik({
 
-    const formik = useFormik({
+    initialValues: {
+      email,
+      nickName: name,
+    },
 
-        initialValues: {
-            email: email,
-            nickName: name
-        },
+    onSubmit: (values) => {
+      dispatch(LogOutTC());
+      formik.resetForm();
+    },
+  });
+  // const onChangeNameHandler=(e:ChangeEvent<HTMLInputElement>)=>{       // fix!!!!!!!!!!!!
+  //         dispatch(UpdateUserTC(e.currentTarget.value))
+  // }
 
-        onSubmit: values => {
-            dispatch(LogOutTC());
-            formik.resetForm()
-        },
-    })
-// const onChangeNameHandler=(e:ChangeEvent<HTMLInputElement>)=>{       // fix!!!!!!!!!!!!
-//         dispatch(UpdateUserTC(e.currentTarget.value))
-// }
+  if (!isLoggedIn) {
+    return <Navigate to="/login" />;
+  }
 
-    if (!isLoggedIn) {
-        return <Navigate to={'/login'}/>
-    }
+  return (
+    <form onSubmit={formik.handleSubmit} className={style.form}>
 
-    return <form onSubmit={formik.handleSubmit} className={style.form}>
+      <div className={style.profile}>
 
-        <div className={style.profile}>
+        <h2>My Profile</h2>
+        <div className={style.avatar}>
+          <InputTypeFilesAvatar />
 
-            <h2>My Profile</h2>
-            <div className={style.avatar}>
-                <InputTypeFilesAvatar/>
-                {/*<img*/}
-                {/*     src={"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoKS48ilmDRBg8dQUfQLAuHJolMtiVxpnzVT8tRbTxdUuSQDmVMr5NRrn_pV0kgyqr7cU&usqp=CAU"}/>*/}
-            </div>
-            NickName: <Input placeholder={'Nickname'}
-                             {...formik.getFieldProps("nickName")}
-                             // onChange={onChangeNameHandler}
-
-        />
-
-
-            Email: <Input
-            placeholder={'email'} disabled={true} className={style.disabled}
-            {...formik.getFieldProps("email")}
-
-
-        />
-            <div className={style.button}>
-
-                <Button>LogOut</Button>
-
-            </div>
         </div>
+        NickName:
+        {' '}
+        <Input
+          placeholder="Nickname"
+          {...formik.getFieldProps('nickName')}
+        />
+
+        Email:
+        {' '}
+        <Input
+          placeholder="email"
+          disabled
+          className={style.disabled}
+          {...formik.getFieldProps('email')}
+        />
+        <div className={style.button}>
+
+          <Button>LogOut</Button>
+
+        </div>
+      </div>
 
     </form>
-};
+  );
+}
 
 export default Profile;

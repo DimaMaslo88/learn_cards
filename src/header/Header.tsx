@@ -1,26 +1,26 @@
 import React from 'react';
-import {NavLink} from "react-router-dom";
-import s from './Header.module.scss'
-import {PATH} from "../pages/Pages";
+import { NavLink } from 'react-router-dom';
+import { Path } from 'enum';
+import s from './Header.module.scss';
 
-const Header = () => {
-    return (
-        <div className={s.container}>
-            <div className={s.pages}>
-                <NavLink to={PATH.login} className={({isActive}) => (isActive ? s.active : s.item)}>Log in</NavLink>
-                {/*<NavLink to={PATH.signup} className={({isActive}) => (isActive ? s.active : s.item)}>Sign up</NavLink>*/}
-                <NavLink to={PATH.profile} className={({isActive}) => (isActive ? s.active : s.item)}>Profile</NavLink>
-                {/*<NavLink to={PATH.newPassword}*/}
-                {/*         className={({isActive}) => (isActive ? s.active : s.item)}>Password</NavLink>*/}
-                {/*<NavLink to={PATH.restorePassword}*/}
-                {/*         className={({isActive}) => (isActive ? s.active : s.item)}>Reset</NavLink>*/}
-                <NavLink to={PATH.packList}
-                         className={({isActive}) => (isActive ? s.active : s.item)}>PackList</NavLink>
-                {/*<NavLink to={PATH.error} className={({isActive}) => (isActive ? s.active : s.item)}>404</NavLink>*/}
-                {/*<NavLink to={PATH.test} className={({isActive}) => (isActive ? s.active : s.item)}>Test</NavLink>*/}
-            </div>
-        </div>
-    );
-};
+function Header():React.ReactElement {
+  return (
+    <div className={s.container}>
+      <div className={s.pages}>
+        <NavLink to={Path.login} className={({ isActive }) => (isActive ? s.active : s.item)}>Log in</NavLink>
+        {/* <NavLink to={PATH.signup} className={({isActive}) => (isActive ? s.active : s.item)}>Sign up</NavLink> */}
+        <NavLink to={Path.profile} className={({ isActive }) => (isActive ? s.active : s.item)}>Profile</NavLink>
+
+        <NavLink
+          to={Path.packList}
+          className={({ isActive }) => (isActive ? s.active : s.item)}
+        >
+          PackList
+        </NavLink>
+
+      </div>
+    </div>
+  );
+}
 
 export default Header;

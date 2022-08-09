@@ -1,20 +1,19 @@
-import {instance} from "./instance";
-
+import { instance } from './instance';
 
 export const cardsApi = {
-    getPacks(params: PacksParamsType) {
-        return instance.get<ResponsePackType>("/cards/pack", {params})
-    },
-    packCreate(name: string) {
-        return instance.post<ResponsePackType>('cards/pack', {cardsPack: {name}})
-    },
-    deletePack(id: string) {
-        return instance.delete<ResponsePackType>("cards/pack", {params:{id}})
-    },
-    updatePack(_id:string,name:string){
-        return instance.put<ResponsePackType>("cards/pack",{cardsPack:{_id,name}})
-    }
-}
+  getPacks(params: PacksParamsType) {
+    return instance.get<ResponsePackType>('/cards/pack', { params });
+  },
+  packCreate(name: string) {
+    return instance.post<ResponsePackType>('cards/pack', { cardsPack: { name } });
+  },
+  deletePack(id: string) {
+    return instance.delete<ResponsePackType>('cards/pack', { params: { id } });
+  },
+  updatePack(_id:string, name:string) {
+    return instance.put<ResponsePackType>('cards/pack', { cardsPack: { _id, name } });
+  },
+};
 
 export type CreatePackParams = {
     cardsPack: {
@@ -24,7 +23,6 @@ export type CreatePackParams = {
     }
 }
 
-
 export type PacksParamsType = {
     packName?: string// не обязательно
     min?: number // не обязательно
@@ -32,7 +30,6 @@ export type PacksParamsType = {
     sortPacks: string// не обязательно
     page: number // не обязательно
     pageCount: number // не обязательно
-
 
     user_id: string
 }
@@ -43,7 +40,6 @@ export type CardPacksType = {
     cardsCount: number
     created: string
     updated: string
-
 
 }
 export type ResponsePackType = {

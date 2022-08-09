@@ -1,39 +1,34 @@
-import {instance} from "./instance";
-// import {NewPasswordType} from "../reducers/auth-reducer";
-
+import { instance } from './instance';
 
 export const authApi = {
-    login(data: LoginParamsType) {
-        return instance.post<ResponseType>("auth/login", data)
-    },
-    register(data: RegisterParamsType) {
-        return instance.post<RegisterResponseType>('auth/register', data)
-    },
-    me() {
-        return instance.post<ResponseType>('auth/me')
-    },
-    updateMe(data: UpdateMeType) {
-        return instance.put<ResponseType<{ name: string, avatar: string }>>('auth/me', data)
-    },
-    logOut() {
-        return instance.delete<ResponseDeleteType>('auth/me')
-    },
-    forgotLogin(data: ForgotLoginType) {
-        return instance.post<ResponseDeleteType>('auth/forgot', data)
-    },
-    newPassword(data: NewPasswordType) {
-        return instance.post<ResponseDeleteType>('auth/set-new-password', data)
-    },
+  login(data: LoginParamsType) {
+    return instance.post<ResponseType>('auth/login', data);
+  },
+  register(data: RegisterParamsType) {
+    return instance.post<RegisterResponseType>('auth/register', data);
+  },
+  me() {
+    return instance.post<ResponseType>('auth/me');
+  },
+  updateMe(data: UpdateMeType) {
+    return instance.put<ResponseType<{ name: string, avatar: string }>>('auth/me', data);
+  },
+  logOut() {
+    return instance.delete<ResponseDeleteType>('auth/me');
+  },
+  forgotLogin(data: ForgotLoginType) {
+    return instance.post<ResponseDeleteType>('auth/forgot', data);
+  },
+  newPassword(data: NewPasswordType) {
+    return instance.post<ResponseDeleteType>('auth/set-new-password', data);
+  },
 
-
-}
-
+};
 
 export type UpdateMeType = {
     name?: string
     avatar?: string
 }
-
 
 export type ForgotLoginType = {
     email: string
