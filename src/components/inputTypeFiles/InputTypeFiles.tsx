@@ -1,11 +1,23 @@
 import React, { ChangeEvent, useRef } from 'react';
 
+import { ReturnComponentType } from 'types';
 import Button from '../../common/button/Button';
 
-export function InputTypeFiles() {
+export function InputTypeFiles():ReturnComponentType {
   const inputRef = useRef<HTMLInputElement>(null);
   const selectFileHandler = () => {
-    inputRef && inputRef.current?.click();
+    if (inputRef) {
+      inputRef.current?.click();
+    }
+  };
+  const convertFileToBase64 = (file: File, callback:(value:string)=>void) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const file64 = reader.result as string;
+      console.log(file64, 'file64');
+      callback(file64);
+    };
+    reader.readAsDataURL(file);
   };
   const onChangeFileHandler = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length) {
@@ -18,15 +30,6 @@ export function InputTypeFiles() {
     }
   };
 
-  const convertFileToBase64 = (file: File, callback:(value:string)=>void) => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const file64 = reader.result as string;
-      console.log(file64, 'file64');
-      callback(file64);
-    };
-    reader.readAsDataURL(file);
-  };
   return (
     <div>
 

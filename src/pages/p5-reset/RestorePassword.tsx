@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { SetNewPasswordTC } from 'reducers/auth-reducer';
 
 import { useAppDispatch } from 'reducers/store';
+import { ReturnComponentType } from 'types';
 import Input from '../../common/input/Input';
 
 import Button from '../../common/button/Button';
@@ -13,7 +14,7 @@ type FormikErrorType = {
     resetPasswordToken?: string
 }
 
-function RestorePassword() {
+function RestorePassword():ReturnComponentType {
   const dispatch = useAppDispatch();
   const { token } = useParams<string>();
 

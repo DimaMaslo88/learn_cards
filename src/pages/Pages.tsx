@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import { Path } from 'enum';
 import { ReturnComponentType } from 'types';
 import Profile from './p3-profile/Profile';
@@ -17,7 +17,7 @@ function Pages():ReturnComponentType {
     <div className={s.pagesContainer}>
 
       <Routes>
-        <Route path="/" element={<Profile />} />
+        <Route path="/" element={<Navigate to={Path.profile} />} />
         <Route path={Path.login} element={<Login />} />
         <Route path={Path.signup} element={<Signup />} />
         <Route path={Path.profile} element={<Profile />} />

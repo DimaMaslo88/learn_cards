@@ -10,9 +10,10 @@ import { styled } from '@mui/material/styles';
 import { useSelector } from 'react-redux';
 import { AppStateType, useAppDispatch } from 'reducers/store';
 import { CardType, GradeCardsTC } from 'reducers/packCards-reducer';
+import { ReturnComponentType } from 'types';
 import style from './Grades.module.scss';
 
-export function Grades() {
+export function Grades():ReturnComponentType {
   const idCard = useSelector<AppStateType, string>((state) => state.cards.randomCardId);
 
   // const [value, setValue] = useState<number>(1)
@@ -58,7 +59,7 @@ export function Grades() {
     return <span {...other}>{iconsToGrade[value].icon}</span>;
   }
 
-  const onChangeHandler = (e: React.SyntheticEvent, value: number | null) => { // fix
+  const onChangeHandler = (e: React.SyntheticEvent, value: number | null):void => { // fix
     if (value !== null) {
       dispatch(GradeCardsTC(value, idCard));
     }

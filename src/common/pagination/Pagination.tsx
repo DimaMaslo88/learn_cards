@@ -1,6 +1,6 @@
 import React, { MouseEvent } from 'react';
 
-import { Stack, TablePagination } from '@mui/material';
+import { TablePagination } from '@mui/material';
 
 type PaginationType = {
     packPage: number

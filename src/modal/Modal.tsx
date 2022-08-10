@@ -71,7 +71,6 @@ export function ModalWindow():React.ReactElement {
     dispatch(UpdateLearningCardsTC(_id, question));
   };
 
-
   return (
     <div>
 
