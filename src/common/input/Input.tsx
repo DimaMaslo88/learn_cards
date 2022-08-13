@@ -27,17 +27,21 @@ const Input: React.FC<SuperInputTextPropsType> = (
   },
 ) => {
   const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-    onChange // если есть пропс onChange
-        && onChange(e); // то передать ему е (поскольку onChange не обязателен)
-
-    onChangeText && onChangeText(e.currentTarget.value);
+    // если есть пропс onChange
+    if (onChange) {
+      onChange(e); // то передать ему е (поскольку onChange не обязателен)
+    }
+    if (onChangeText) {
+      onChangeText(e.currentTarget.value);
+    }
   };
   const onKeyPressCallback = (e: KeyboardEvent<HTMLInputElement>) => {
-    onKeyPress && onKeyPress(e);
-
-    onEnter // если есть пропс onEnter
-        && e.key === 'Enter' // и если нажата кнопка Enter
-        && onEnter(); // то вызвать его
+    if (onKeyPress) {
+      onKeyPress(e);
+    }
+    if (onEnter && e.key === 'Enter') { // если есть пропс onEnter, // и если нажата кнопка Enter
+      onEnter(); // то вызвать его
+    }
   };
 
   const finalSpanClassName = `${s.error} ${spanClassName || ''}`;

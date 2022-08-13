@@ -22,6 +22,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "no-debugger": "off",
     "react/require-default-props": "off",
     "react/button-has-type": "off",
     "no-shadow": "off",

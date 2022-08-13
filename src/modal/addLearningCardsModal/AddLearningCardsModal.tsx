@@ -1,9 +1,8 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { AppStateType } from 'reducers/store';
+import { selectPackId } from 'reducers/selectors/Selectors';
 import Button from '../../common/button/Button';
 import style from './AddLeaningCardsModal.module.css';
-import { selectPackId } from "reducers/selectors/Selectors";
 
 type AddLearningCardsModalType = {
     title: string

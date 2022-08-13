@@ -15,8 +15,10 @@ export function InputTypeFilesAvatar():React.ReactElement {
   const [brokenAva, setBrokenAva] = useState<boolean>(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
-  const selectFileHandler = ():void => {
-    inputRef && inputRef.current?.click();
+  const selectFileHandler = () => {
+    if (inputRef) {
+      inputRef.current?.click();
+    }
   };
   const convertFileToBase64 = (file: File, callback: (value: string) => void) => {
     const reader = new FileReader();
@@ -52,6 +54,7 @@ export function InputTypeFilesAvatar():React.ReactElement {
           src={brokenAva || ava === null ? defaultAva : ava}
           className={style.img}
           onError={errorHandler}
+          alt=""
         />
       </div>
       <div className={style.addAva}>

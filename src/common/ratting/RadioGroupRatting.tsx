@@ -12,6 +12,39 @@ import {
 } from '@material-ui/icons';
 import { GradeCardsTC } from 'reducers/packCards-reducer';
 
+const iconsToGrade: {
+  [index: string]: {
+    icon: React.ReactElement;
+    label: string;
+  };
+} = {
+  1: {
+    icon: <SentimentVeryDissatisfied className={style.one} fontSize="large" />,
+    label: 'bad',
+  },
+  2: {
+    icon: <SentimentDissatisfied className={style.two} fontSize="large" />,
+    label: 'not bad',
+  },
+  3: {
+    icon: <SentimentDissatisfied className={style.three} fontSize="large" />,
+    label: 'good',
+  },
+  4: {
+    icon: <SentimentSatisfiedAlt className={style.four} fontSize="large" />,
+    label: 'very good',
+  },
+  5: {
+    icon: <SentimentVerySatisfied className={style.five} fontSize="large" />,
+    label: 'excellent',
+  },
+};
+
+function IconContainer(props: IconContainerProps) {
+  const { value, ...other } = props;
+  return <span {...other}>{iconsToGrade[value].icon}</span>;
+}
+
 export const RadioGroupRatting = () => {
   const idCard = useSelector<AppStateType, string>((state) => state.cards.randomCardId);
 
@@ -22,38 +55,6 @@ export const RadioGroupRatting = () => {
       color: theme.palette.action.disabled,
     },
   }));
-  const iconsToGrade: {
-    [index: string]: {
-      icon: React.ReactElement;
-      label: string;
-    };
-  } = {
-    1: {
-      icon: <SentimentVeryDissatisfied className={style.one} fontSize="large" />,
-      label: 'bad',
-    },
-    2: {
-      icon: <SentimentDissatisfied className={style.two} fontSize="large" />,
-      label: 'not bad',
-    },
-    3: {
-      icon: <SentimentDissatisfied className={style.three} fontSize="large" />,
-      label: 'good',
-    },
-    4: {
-      icon: <SentimentSatisfiedAlt className={style.four} fontSize="large" />,
-      label: 'very good',
-    },
-    5: {
-      icon: <SentimentVerySatisfied className={style.five} fontSize="large" />,
-      label: 'excellent',
-    },
-  };
-
-  function IconContainer(props: IconContainerProps) {
-    const { value, ...other } = props;
-    return <span {...other}>{iconsToGrade[value].icon}</span>;
-  }
 
   const onChangeHandler = (e: React.SyntheticEvent, value: number | null):void => { // fix
     if (value !== null) {
