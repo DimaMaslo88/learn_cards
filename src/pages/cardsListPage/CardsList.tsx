@@ -11,8 +11,7 @@ import BasicPagination from 'common/pagination/Pagination';
 import { setPageCountAC } from 'reducers/cards-reducer';
 import {
   selectCards,
-  selectIsLoggedIn,
-  selectPage,
+  selectIsLoggedIn, selectPackPage,
   selectPageCount,
   selectSort,
   selectTotalCount,
@@ -31,7 +30,7 @@ function CardsList():React.ReactElement {
   const pageCount = useSelector(selectPageCount);
   const sort = useSelector(selectSort);
   const userId = useSelector(selectUserId);
-  const page = useSelector(selectPage);
+  const page = useSelector(selectPackPage);
   const totalCount = useSelector(selectTotalCount);
 
   const setCardPage = (value: number):void => {

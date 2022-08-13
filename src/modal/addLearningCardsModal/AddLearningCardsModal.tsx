@@ -1,9 +1,9 @@
-import React, {ChangeEvent, useState} from 'react';
-import Button from "../../common/button/Button";
-import style from "./AddLeaningCardsModal.module.css"
-
-import {useSelector} from "react-redux";
-import {AppStateType} from "../../reducers/store";
+import React, { ChangeEvent, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { AppStateType } from 'reducers/store';
+import Button from '../../common/button/Button';
+import style from './AddLeaningCardsModal.module.css';
+import { selectPackId } from "reducers/selectors/Selectors";
 
 type AddLearningCardsModalType = {
     title: string
@@ -11,43 +11,45 @@ type AddLearningCardsModalType = {
     closeModal: () => void
 }
 
-export const AddLearningCardsModal = ({title, addNewLearningCard, closeModal}: AddLearningCardsModalType) => {
-    const packId = useSelector<AppStateType, string>(state => state.cards.cardsPack_id)
+export const AddLearningCardsModal = ({ title, addNewLearningCard, closeModal }: AddLearningCardsModalType) => {
+  const packId = useSelector(selectPackId);
 
-    const [question, setQuestion] = useState<string>('')
-    const [answer, setAnswer] = useState<string>('')
-    const onChangeQuestionHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setQuestion(e.currentTarget.value)
-    }
-    const onChangeAnswerHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setAnswer(e.currentTarget.value)
-    }
-    return (
+  const [question, setQuestion] = useState<string>('');
+  const [answer, setAnswer] = useState<string>('');
+  const onChangeQuestionHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setQuestion(e.currentTarget.value);
+  };
+  const onChangeAnswerHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    setAnswer(e.currentTarget.value);
+  };
+  return (
+    <div>
+      <h4 className={style.title}>{title}</h4>
+      <div className={style.inputForm}>
         <div>
-            <h4 className={style.title}>{title}</h4>
-            <div className={style.inputForm}>
-                <div>
-                    <input className={style.input}
-                           placeholder='question'
-                           value={question}
-                           onChange={onChangeQuestionHandler}/>
-                </div>
-                <div>
-                    <input
-                        className={style.input}
-                        placeholder='answer'
-                        value={answer}
-                        onChange={onChangeAnswerHandler}/>
-                </div>
-            </div>
-            <div className={style.button}>
-                <Button onClick={() => addNewLearningCard(question, answer, packId)}
-                >Save</Button>
-                <Button onClick={closeModal}>Cancel</Button>
-            </div>
-
-
+          <input
+            className={style.input}
+            placeholder="question"
+            value={question}
+            onChange={onChangeQuestionHandler}
+          />
         </div>
-    );
-};
+        <div>
+          <input
+            className={style.input}
+            placeholder="answer"
+            value={answer}
+            onChange={onChangeAnswerHandler}
+          />
+        </div>
+      </div>
+      <div className={style.button}>
+        <Button onClick={() => addNewLearningCard(question, answer, packId)}>
+          Save
+        </Button>
+        <Button onClick={closeModal}>Cancel</Button>
+      </div>
 
+    </div>
+  );
+};

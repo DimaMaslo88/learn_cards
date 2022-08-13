@@ -33,7 +33,6 @@ const Checkbox: React.FC<SuperCheckboxPropsType> = (
         type="checkbox"
         onChange={onChangeCallback}
         className={finalInputClassName}
-
         {...restProps}
       />
       {children && <span className={s.spanClassName}>{children}</span>}

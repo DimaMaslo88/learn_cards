@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 import {
   selectCardsPack,
-  selectIsLoggedIn, selectPackName,
+  selectIsLoggedIn, selectPackName, selectPackPage,
   selectPackPageCount,
   selectPackSort,
   selectPackTotalCount,
@@ -25,16 +25,16 @@ function PackList():React.ReactElement {
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const cards = useSelector(selectCardsPack);
   const pageCount = useSelector(selectPackPageCount);
-  const packPage = useSelector(selectPackPageCount);
+  const packPage = useSelector(selectPackPage);
   const totalCount = useSelector(selectPackTotalCount);
   const userId = useSelector(selectUserId);
   const sort = useSelector(selectPackSort);
   const packName = useSelector(selectPackName);
 
-  const setNewPageHandler = (page: number):void => {
+  const setNewPageHandler = (page: number) => {
     dispatch(setPageAC(page));
   };
-  const setNewPageCountHandler = (page: number):void => {
+  const setNewPageCountHandler = (page: number) => {
     dispatch(setPageCountAC(page));
   };
 

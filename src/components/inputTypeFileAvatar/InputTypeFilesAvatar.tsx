@@ -18,6 +18,15 @@ export function InputTypeFilesAvatar():React.ReactElement {
   const selectFileHandler = ():void => {
     inputRef && inputRef.current?.click();
   };
+  const convertFileToBase64 = (file: File, callback: (value: string) => void) => {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const file64 = reader.result as string;
+      console.log(file64, 'file64');
+      callback(file64);
+    };
+    reader.readAsDataURL(file);
+  };
   const onChangeFileHandler = (e: ChangeEvent<HTMLInputElement>):void => {
     if (e.target.files && e.target.files.length) {
       const file = e.target.files[0];
@@ -32,15 +41,6 @@ export function InputTypeFilesAvatar():React.ReactElement {
     }
   };
 
-  const convertFileToBase64 = (file: File, callback: (value: string) => void):void => {
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      const file64 = reader.result as string;
-      console.log(file64, 'file64');
-      callback(file64);
-    };
-    reader.readAsDataURL(file);
-  };
   const errorHandler = ():void => {
     setBrokenAva(true);
     alert('invalid image');
